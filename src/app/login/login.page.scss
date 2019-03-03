@@ -1,0 +1,46 @@
+.container-bg .inner-scroll {
+    background: rgb(255,145,76);
+}
+
+.logo-img {
+    width: 200px;
+    position: relative;
+    margin: auto auto;
+}
+
+.login-form {
+    padding: 50px;
+    background: rgb(255,145,76);
+    color: #fff;
+}
+
+.form-header {
+    width: 100%;
+    color: #fff;
+}
+
+.item .item-native {
+    background-color: transparent;
+}
+
+.resend {
+    color: black;
+    font-size: 12px;
+    margin: 5px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.login-btn {
+    width: 100%;
+    position: relative;
+    top: 20px;
+}
+
+.reg {
+    color: white;
+    position: relative;
+    top: 25px;
+    width: 100%;
+    cursor: pointer;
+}
