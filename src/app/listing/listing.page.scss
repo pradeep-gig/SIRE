@@ -1,0 +1,36 @@
+.logo-img {
+    width: 100px;
+    position: relative;
+    margin: auto auto;
+}
+.header-title {
+    width: 100%;
+    margin: 0;
+}
+.listing-search {
+    background: rgb(255,145,76);
+    width: 100%;
+}
+.listing-item {
+    padding: 15px;
+    
+    .info {
+        border-right: 1px solid #cbcbcb;
+    }
+    .price {
+        .view-details {
+            color: green;
+            cursor: pointer;
+        }
+    }
+}
+.add-post {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
