@@ -1,6 +1,6 @@
 {
     "Andaman and Nicobar Islands": [
-      "Port Blair*"
+      "Port Blair"
     ],
     "Andhra Pradesh": [
       "Adoni",
@@ -166,7 +166,7 @@
       "Naugachhia",
       "Nawada",
       "Nokha",
-      "Patna*",
+      "Patna",
       "Piro",
       "Purnia",
       "Rafiganj",
@@ -191,7 +191,7 @@
       "Warisaliganj"
     ],
     "Chandigarh": [
-      "Chandigarh*"
+      "Chandigarh"
     ],
     "Chhattisgarh": [
       "Ambikapur",
@@ -209,23 +209,23 @@
       "Mungeli",
       "Naila Janjgir",
       "Raigarh",
-      "Raipur*",
+      "Raipur",
       "Rajnandgaon",
       "Sakti",
       "Tilda Newra"
     ],
     "Dadra and Nagar Haveli": [
-      "Silvassa*"
+      "Silvassa"
     ],
     "Delhi": [
       "Delhi",
-      "New Delhi*"
+      "New Delhi"
     ],
     "Goa": [
       "Mapusa",
       "Margao",
       "Marmagao",
-      "Panaji*"
+      "Panaji"
     ],
     "Gujarat": [
       "Adalaj",
@@ -344,7 +344,7 @@
       "Mandi",
       "Nahan",
       "Palampur",
-      "Shimla*",
+      "Shimla",
       "Solan",
       "Sundarnagar"
     ],
@@ -356,7 +356,7 @@
       "Punch",
       "Rajauri",
       "Sopore",
-      "Srinagar*",
+      "Srinagar",
       "Udhampur"
     ],
     "Jharkhand": [
@@ -382,7 +382,7 @@
       "Patratu",
       "Phusro",
       "Ramgarh",
-      "Ranchi*",
+      "Ranchi",
       "Sahibganj",
       "Saunda",
       "Simdega",
@@ -644,7 +644,7 @@
       "Morshi",
       "Mukhed",
       "Mul",
-      "Greater Mumbai*",
+      "Greater Mumbai",
       "Murtijapur",
       "Nagpur",
       "Nanded-Waghala",
@@ -734,14 +734,14 @@
       "Yevla"
     ],
     "Manipur": [
-      "Imphal*",
+      "Imphal",
       "Lilong",
       "Mayang Imphal",
       "Thoubal"
     ],
     "Meghalaya": [
       "Nongstoin",
-      "Shillong*",
+      "Shillong",
       "Tura"
     ],
     "Mizoram": [
@@ -751,7 +751,7 @@
     ],
     "Nagaland": [
       "Dimapur",
-      "Kohima*",
+      "Kohima",
       "Mokokchung",
       "Tuensang",
       "Wokha",
@@ -765,7 +765,7 @@
       "Baripada Town",
       "Bhadrak",
       "Bhawanipatna",
-      "Bhubaneswar*",
+      "Bhubaneswar",
       "Brahmapur",
       "Byasanagar",
       "Cuttack",
@@ -796,7 +796,7 @@
     "Puducherry": [
       "Karaikal",
       "Mahe",
-      "Pondicherry*",
+      "Pondicherry",
       "Yanam"
     ],
     "Punjab": [
@@ -861,7 +861,7 @@
       "Bikaner",
       "Bharatpur",
       "Bhilwara",
-      "Jaipur*",
+      "Jaipur",
       "Jodhpur",
       "Lachhmangarh",
       "Ladnu",
@@ -935,7 +935,7 @@
     "Tamil Nadu": [
       "Arakkonam",
       "Aruppukkottai",
-      "Chennai*",
+      "Chennai",
       "Coimbatore",
       "Erode",
       "Gobichettipalayam",
@@ -1055,7 +1055,7 @@
       "Bodhan",
       "Farooqnagar",
       "Gadwal",
-      "Hyderabad*",
+      "Hyderabad",
       "Jagtial",
       "Jangaon",
       "Kagaznagar",
@@ -1089,7 +1089,7 @@
       "Yellandu"
     ],
     "Tripura": [
-      "Agartala*",
+      "Agartala",
       "Belonia",
       "Dharmanagar",
       "Kailasahar",
@@ -1110,7 +1110,7 @@
       "Firozabad",
       "Fatehpur Sikri",
       "Hapur",
-      "Hardoi *",
+      "Hardoi ",
       "Jhansi",
       "Kalpi",
       "Kanpur",
@@ -1122,7 +1122,7 @@
       "Lalganj",
       "Lar",
       "Loni",
-      "Lucknow*",
+      "Lucknow",
       "Mathura",
       "Meerut",
       "Modinagar",

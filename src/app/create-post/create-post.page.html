@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div class='header-logo'>
+          <ion-img class='logo-img' [src]="logoPath"></ion-img>
+      </div>
+      <h1 class='header-title' text-center> 
+          <ion-icon name="menu" float-left ></ion-icon> 
+          SI RE
+          <ion-icon name="notifications" float-right ></ion-icon>
+      </h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form class='login-form' [formGroup]="postForm">
+    <ion-row margin-top>
+      <ion-item>
+        <ion-label position="floating"> Post Type </ion-label>
+        <ion-select formControlName="postType">
+          <ion-select-option value="requirement">Requirement</ion-select-option>
+          <ion-select-option value="availablity">Availablity</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Title </ion-label>
+        <ion-input type="text" formControlName="title"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Location </ion-label>
+        <ion-select formControlName="location">
+          <ion-select-option value="requirement">Requirement</ion-select-option>
+          <ion-select-option value="availablity">Availablity</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Property Area </ion-label>
+        <ion-select formControlName="propertyArea">
+          <ion-select-option value="requirement">Requirement</ion-select-option>
+          <ion-select-option value="availablity">Availablity</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Terms </ion-label>
+        <ion-textarea rows="6" cols="20" formControlName="terms"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Property Type </ion-label>
+        <ion-select formControlName="propertyType">
+          <ion-select-option value="requirement">Requirement</ion-select-option>
+          <ion-select-option value="availablity">Availablity</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating"> Area </ion-label>
+        <ion-input type="text" formControlName="area"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Dimension </ion-label>
+        <ion-input type="text" formControlName="dimension"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Facing </ion-label>
+        <ion-select formControlName="facing">
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option value="north">North</ion-select-option>
+          <ion-select-option value="south">South</ion-select-option>
+          <ion-select-option value="east">East</ion-select-option>
+          <ion-select-option value="west">West</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-row>
+
+    
+    <ion-button color="warning" shape="round" fill="solid" float-right>Submit</ion-button>
+    <ion-button color="warning" shape="round" fill="solid" float-right>Clear</ion-button>
+  
+
+</form>
+</ion-content>
