@@ -18,7 +18,7 @@
     <ion-row margin-top>
       <ion-item>
         <ion-label position="floating"> Post Type </ion-label>
-        <ion-select formControlName="postType">
+        <ion-select formControlName="typeofpost">
           <ion-select-option value="requirement">Requirement</ion-select-option>
           <ion-select-option value="availablity">Availablity</ion-select-option>
         </ion-select>
@@ -32,29 +32,42 @@
       <ion-item>
         <ion-label position="floating"> Location </ion-label>
         <ion-select formControlName="location">
-          <ion-select-option value="requirement">Requirement</ion-select-option>
-          <ion-select-option value="availablity">Availablity</ion-select-option>
+          <ion-select-option *ngFor='let s of state; let i = index' value="{{s}}">{{s}}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating"> Property Area </ion-label>
-        <ion-select formControlName="propertyArea">
-          <ion-select-option value="requirement">Requirement</ion-select-option>
-          <ion-select-option value="availablity">Availablity</ion-select-option>
-        </ion-select>
+        <ion-input type="text" formControlName="area"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating"> Terms </ion-label>
-        <ion-textarea rows="6" cols="20" formControlName="terms"></ion-textarea>
+        <ion-select formControlName="terms">
+          <ion-select-option value="For Sale">For Sale</ion-select-option>
+          <ion-select-option value="For Rental">For Rental</ion-select-option>
+          <ion-select-option value="For Lease">For Lease</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Property Condition </ion-label>
+        <ion-select formControlName="condition">
+          <ion-select-option value="New">New</ion-select-option>
+          <ion-select-option value="Resale"> Resale</ion-select-option>
+          <ion-select-option value="Not-New"> Not-New</ion-select-option>
+          <ion-select-option value="Old"> Old</ion-select-option>
+          <ion-select-option value="Recent"> Recent</ion-select-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating"> Property Type </ion-label>
-        <ion-select formControlName="propertyType">
-          <ion-select-option value="requirement">Requirement</ion-select-option>
-          <ion-select-option value="availablity">Availablity</ion-select-option>
+        <ion-select formControlName="type">
+          <ion-select-option value="Land">Land</ion-select-option>
+          <ion-select-option value="Flats"> Flats</ion-select-option>
+          <ion-select-option value="Villa"> Villa</ion-select-option>
+          <ion-select-option value="House"> House</ion-select-option>
         </ion-select>
       </ion-item>
       
@@ -64,7 +77,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating"> Dimension </ion-label>
+        <ion-label position="floating"> Dimension in -Sq.Ft </ion-label>
         <ion-input type="text" formControlName="dimension"></ion-input>
       </ion-item>
 
@@ -78,11 +91,35 @@
           <ion-select-option value="west">West</ion-select-option>
         </ion-select>
       </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Landmark</ion-label>
+        <ion-input type="text" formControlName="landmark"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"> Budget </ion-label>
+        <ion-input type="text" formControlName="budget"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="floating"> Contact No </ion-label>
+        <ion-input type="tel" formControlName="contact"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="floating" rows="3" cols="20">Comments</ion-label>
+        <ion-textarea formControlName="comment"></ion-textarea>
+      </ion-item>
+
+
     </ion-row>
 
     
-    <ion-button color="warning" shape="round" fill="solid" float-right>Submit</ion-button>
-    <ion-button color="warning" shape="round" fill="solid" float-right>Clear</ion-button>
+    <ion-button [disabled]="!postForm.valid" (click)='postSubmit()' color="warning" shape="round" fill="solid" float-right>Submit</ion-button>
+    <ion-button color="warning" shape="round" (click)='clear()' fill="solid" float-right>Clear</ion-button>
   
 
 </form>

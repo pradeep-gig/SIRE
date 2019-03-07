@@ -13,9 +13,8 @@ export class RegisterPage implements OnInit {
   state = [];
   city = [];
 
-  constructor(private formBuilder: FormBuilder, 
-    private apiService: ApiService
-    ) { }
+  constructor(private formBuilder: FormBuilder,
+    private apiService: ApiService) { }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
