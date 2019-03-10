@@ -7,7 +7,7 @@
           <h1 class='header-title' text-center> 
               <ion-menu-button autoHide="false"></ion-menu-button>
               <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
-              Dashboard
+              SI RE
               <ion-icon name="notifications" float-right ></ion-icon>
           </h1>
         </ion-title>
@@ -15,7 +15,23 @@
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>contents coming soon.</p>
+    <ion-segment [(ngModel)]="view">
+        <ion-segment-button class="segment-button segment-activated"  value="myPosting">
+            <ion-label>My Posting</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="updateProfile">
+            <ion-label>Update Profile</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <ion-row margin-top>
+        <ion-item *ngIf='view == "myPosting"'>
+            posting Information
+        </ion-item>
+        <ion-item *ngIf='view == "updateProfile"'>
+            profile Info
+        </ion-item>
+    </ion-row>
+
 </ion-content>
 

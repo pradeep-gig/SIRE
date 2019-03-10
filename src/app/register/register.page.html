@@ -40,7 +40,7 @@
         <ion-row margin-top>
           <ion-item>
             <ion-label position="floating"> State </ion-label>
-            <ion-select formControlName="state">
+            <ion-select interface="action-sheet" formControlName="state">
               <ion-select-option *ngFor="let s of state; let i = index" value="{{s}}">{{s}}</ion-select-option>
             </ion-select>
           </ion-item>
@@ -49,7 +49,7 @@
         <ion-row margin-top>
           <ion-item width-50>
             <ion-label position="floating"> City </ion-label>
-            <ion-select formControlName="city">
+            <ion-select interface="action-sheet" formControlName="city">
               <ion-select-option *ngFor="let c of city; let i = index" value="{{c}}">{{c}}</ion-select-option>
             </ion-select>
           </ion-item>

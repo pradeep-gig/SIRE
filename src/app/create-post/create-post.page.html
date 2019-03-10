@@ -18,7 +18,7 @@
     <ion-row margin-top>
       <ion-item>
         <ion-label position="floating"> Post Type </ion-label>
-        <ion-select formControlName="typeofpost">
+        <ion-select interface="action-sheet" formControlName="typeofpost">
           <ion-select-option value="requirement">Requirement</ion-select-option>
           <ion-select-option value="availablity">Availablity</ion-select-option>
         </ion-select>
@@ -31,7 +31,7 @@
 
       <ion-item>
         <ion-label position="floating"> Location </ion-label>
-        <ion-select formControlName="location">
+        <ion-select interface="action-sheet" formControlName="location">
           <ion-select-option *ngFor='let s of state; let i = index' value="{{s}}">{{s}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -43,7 +43,7 @@
 
       <ion-item>
         <ion-label position="floating"> Terms </ion-label>
-        <ion-select formControlName="terms">
+        <ion-select interface="action-sheet" formControlName="terms">
           <ion-select-option value="For Sale">For Sale</ion-select-option>
           <ion-select-option value="For Rental">For Rental</ion-select-option>
           <ion-select-option value="For Lease">For Lease</ion-select-option>
@@ -52,7 +52,7 @@
 
       <ion-item>
         <ion-label position="floating"> Property Condition </ion-label>
-        <ion-select formControlName="condition">
+        <ion-select interface="action-sheet" formControlName="condition">
           <ion-select-option value="New">New</ion-select-option>
           <ion-select-option value="Resale"> Resale</ion-select-option>
           <ion-select-option value="Not-New"> Not-New</ion-select-option>
@@ -63,7 +63,7 @@
 
       <ion-item>
         <ion-label position="floating"> Property Type </ion-label>
-        <ion-select formControlName="type">
+        <ion-select interface="action-sheet" formControlName="type">
           <ion-select-option value="Land">Land</ion-select-option>
           <ion-select-option value="Flats"> Flats</ion-select-option>
           <ion-select-option value="Villa"> Villa</ion-select-option>
@@ -72,18 +72,18 @@
       </ion-item>
       
       <ion-item>
-        <ion-label position="floating"> Area </ion-label>
-        <ion-input type="text" formControlName="area"></ion-input>
+        <ion-label position="floating"> Area in -Sq.Ft </ion-label>
+        <ion-input type="number" formControlName="area"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating"> Dimension in -Sq.Ft </ion-label>
-        <ion-input type="text" formControlName="dimension"></ion-input>
+        <ion-label position="floating"> Dimension </ion-label>
+        <ion-input type="number" formControlName="dimension"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating"> Facing </ion-label>
-        <ion-select formControlName="facing">
+        <ion-select interface="action-sheet" formControlName="facing">
           <ion-select-option value="all">All</ion-select-option>
           <ion-select-option value="north">North</ion-select-option>
           <ion-select-option value="south">South</ion-select-option>
@@ -113,8 +113,6 @@
         <ion-label position="floating" rows="3" cols="20">Comments</ion-label>
         <ion-textarea formControlName="comment"></ion-textarea>
       </ion-item>
-
-
     </ion-row>
 
     
@@ -122,5 +120,5 @@
     <ion-button color="warning" shape="round" (click)='clear()' fill="solid" float-right>Clear</ion-button>
   
 
-</form>
+  </form>
 </ion-content>

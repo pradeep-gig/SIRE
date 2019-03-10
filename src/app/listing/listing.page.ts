@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
+import { Router } from '@angular/router';
 // import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -11,9 +12,7 @@ export class ListingPage implements OnInit {
   logoPath: string;
   Postings: Array<any>;
   showNext: boolean = false;
-  constructor( private apiService: ApiService,
-     // private menu: MenuController
-     ) { }
+  constructor( private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
@@ -28,6 +27,10 @@ export class ListingPage implements OnInit {
       this.apiService.hideLoading();
       this.apiService.checkConnectivity();
     });
+  }
+
+  viewDetails(data) {
+    this.router.navigate(['/post-view/' + data.id]);
   }
 
   // openMenu() {

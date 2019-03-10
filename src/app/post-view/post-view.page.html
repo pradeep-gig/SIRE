@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <div class='header-logo'>
+          <ion-img class='logo-img' [src]="logoPath"></ion-img>
+      </div>
+      <h1 class='header-title' text-center> 
+          <ion-menu-button autoHide="false"></ion-menu-button>
+          SI RE
+          <ion-icon name="notifications" float-right ></ion-icon>
+      </h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row margin-top>
+    <ion-item>
+      <h1 text-center>Title</h1>
+    </ion-item>
+  </ion-row>
+
+  <ion-row margin-top *ngFor='let item of displayInfo; let i = index'>
+      <ion-item>
+          <ion-label> {{item.name}} </ion-label>
+          <ion-label> {{item.value}} </ion-label>
+      </ion-item>
+  </ion-row>
+
+  
+</ion-content>
