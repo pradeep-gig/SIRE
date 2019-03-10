@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 import { ApiService } from '../services/api/api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-post',
@@ -12,7 +14,7 @@ export class CreatePostPage implements OnInit {
   postForm: FormGroup;
   state = [];
   postCreateObj = {};
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
@@ -37,14 +39,13 @@ export class CreatePostPage implements OnInit {
       dimension: ['',Validators.compose([])],
       facing: ['',Validators.compose([])],
       landmark: ['',Validators.compose([])],
-      budget: ['',Validators.compose([])],
+      budget: ['',Validators.compose([Validators.required])],
       contact: ['',Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       comment: ['',Validators.compose([])],
     });
   }
 
   postSubmit() {
-    console.log(this.postForm.value);
     this.postCreateObj = Object.assign({'user': 1}, this.postForm.value);
     
     for (var propName in this.postCreateObj) { 
@@ -52,8 +53,19 @@ export class CreatePostPage implements OnInit {
         delete this.postCreateObj[propName];
       }
     }
+    this.apiService.showLoading();
     this.apiService.createPost(this.postCreateObj).subscribe(res => {
-      console.log(res);
+      this.apiService.hideLoading();
+      if(!!res['status'] && res['status'] == "Success"){
+        // this.apiService.showToast("Posting done", true, "close", "bottom", 1000);
+        this.router.navigate(['/listing']);
+      }else{
+        this.apiService.showToast("Posting failed", true, "close", "bottom", 1000);
+      }
+      
+    },error => {
+      this.apiService.hideLoading();
+      this.apiService.checkConnectivity();
     });
   }
 

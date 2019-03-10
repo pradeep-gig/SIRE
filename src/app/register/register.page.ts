@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 import { ApiService } from '../services/api/api.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -12,9 +14,9 @@ export class RegisterPage implements OnInit {
   stateCityList = {};
   state = [];
   city = [];
-
+  registerFormReq = {};
   constructor(private formBuilder: FormBuilder,
-    private apiService: ApiService) { }
+    private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
@@ -24,14 +26,16 @@ export class RegisterPage implements OnInit {
       for(let state in this.stateCityList){
         this.state.push(state);
       }
+    }, error => {
+      console.log(error);
     });
 
     this.registerForm = this.formBuilder.group({
       phone: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-      firstname: ['', Validators.compose([])],
-      lastname: ['', Validators.compose([])],
-      state: ['',Validators.compose([])],
-      city: ['',Validators.compose([])],
+      firstname: ['', Validators.compose([Validators.required])],
+      lastname: ['', Validators.compose([Validators.required])],
+      state: ['',Validators.compose([Validators.required])],
+      city: ['',Validators.compose([Validators.required])],
     });
 
     this.onChanges();
@@ -45,6 +49,27 @@ export class RegisterPage implements OnInit {
         this.city = this.stateCityList[val.state];
       }
     });
+  }
+
+  register(){
+    if(this.registerForm.valid){
+      this.registerFormReq = Object.assign({}, this.registerForm.value);
+      this.apiService.showLoading();
+      this.apiService.createUser(this.registerFormReq).subscribe(res => {
+        this.apiService.hideLoading();
+        if(!!res['status'] && res['status'] == "Success"){
+          this.apiService.showToast("Registered sucessfully, Please login. ", true, "close", "bottom", 1000);
+          this.router.navigate(['/login']);
+        }else{
+          this.apiService.showToast("Registration failed", true, "close", "bottom", 1000);
+        }
+        
+      },error => {
+        this.apiService.hideLoading();
+        this.apiService.checkConnectivity();
+      });
+
+    }
   }
 
 }

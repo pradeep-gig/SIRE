@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api/api.service';
+// import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-listing',
@@ -7,41 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListingPage implements OnInit {
   logoPath: string;
-  items: Array<any>;
-  constructor() { }
+  Postings: Array<any>;
+  showNext: boolean = false;
+  constructor( private apiService: ApiService,
+     // private menu: MenuController
+     ) { }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
-    this.items = [
-      {
-        'title': "Title",
-        'description': "description goes here",
-        'area': "1000 sq ft",
-        'location': "chennai, velachery",
-        'price': 12000
-      },
-      {
-        'title': "Title 1",
-        'description': "description goes here",
-        'area': "900 sq ft",
-        'location': "chennai, arumbakkam",
-        'price': 8000
-      },
-      {
-        'title': "Title 2",
-        'description': "description goes here",
-        'area': "750 sq ft",
-        'location': "chennai, porur",
-        'price': 5000
-      },
-      {
-        'title': "Title 3",
-        'description': "description goes here",
-        'area': "1200 sq ft",
-        'location': "chennai, vadapalani",
-        'price': 11000
+    this.Postings = [];
+    this.apiService.showLoading();
+    this.apiService.getpost().subscribe(res => {
+      this.apiService.hideLoading();
+      if(res['status'] == 'Success'){
+        this.Postings = res['data'];
       }
-    ];
+    },error => {
+      this.apiService.hideLoading();
+      this.apiService.checkConnectivity();
+    });
   }
+
+  // openMenu() {
+  //   this.menu.enable(true, 'sideBarMenu');
+  //   this.menu.open('sideBarMenu');
+  // }
+
 
 }

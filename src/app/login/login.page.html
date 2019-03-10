@@ -3,7 +3,7 @@
     <ion-img class='logo-img' [src]="logoPath"></ion-img>
   </div>
 
-  <form class='login-form' [formGroup]="loginForm">
+  <form class='login-form' [formGroup]="loginForm" (submit)='login()'>
       <h1 class='form-header' text-center>Login</h1>
       <ion-row margin-top>
         <ion-item class="margin-top-50">
@@ -14,16 +14,17 @@
       </ion-row>
      
       <ion-row margin-top>
-          <span class='resend' text-right> <ion-icon name="sync" margin-right></ion-icon> Resend OTP</span>
+        <a class='resend' tabindex="0" text-right *ngIf='showOtp' (click)='generateOtp()'> <ion-icon name="paper-plane" margin-right></ion-icon> Send OTP</a>  
+        <a class='resend' tabindex="0" text-right *ngIf='sendOtp'> <ion-icon name="sync" margin-right></ion-icon> Resend OTP</a>
         <ion-item class="margin-top-50">
           <ion-label position="floating">
             <ion-icon name="lock" margin-right></ion-icon> OTP </ion-label>
-          <ion-input type="number" formControlName="otp"></ion-input>
+          <ion-input type="number" formControlName="otp" [disabled]='!sendOtp'></ion-input>
         </ion-item>
       </ion-row>
 
       <ion-row>
-          <ion-button class='login-btn' shape="round" fill="solid" color="light">Login</ion-button>
+        <ion-button type='submit' class='login-btn' shape="round" fill="solid" color="light" [disabled]="!loginForm.valid"  >Login</ion-button>
           <span class='reg' routerLink="/register" text-right> New Registration</span>
       </ion-row>
 

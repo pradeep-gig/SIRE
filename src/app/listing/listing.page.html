@@ -5,7 +5,8 @@
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
       </div>
       <h1 class='header-title' text-center> 
-          <ion-icon name="menu" float-left ></ion-icon> 
+          <ion-menu-button autoHide="false"></ion-menu-button>
+          <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
           SI RE
           <ion-icon name="notifications" float-right ></ion-icon>
       </h1>
@@ -14,25 +15,25 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-button class='add-post' color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
-    <ion-toolbar class="listing-search">
+    <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
+    <!-- <ion-toolbar class="listing-search">
       <ion-searchbar></ion-searchbar>
-    </ion-toolbar>
-
-    <ion-card *ngFor="let item of items; let i = index">
+    </ion-toolbar> -->
+    <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
+    <ion-card *ngFor="let item of Postings; let i = index">
       <ion-card-content >
         <ion-grid>
           <ion-row class='listing-item'>
-            <ion-col class='info' size="9">
-              <h1>{{item.title}}</h1>
-              <p>{{item.description}}</p>
-              <p>{{item.area}}</p>
+            <ion-col class='info' size="7">
+              <h1>{{item.title}} - {{item.typeofpost}}</h1>
+              <p>{{item.terms}}</p>
+              <p><ion-label> Propert Type - </ion-label>{{item.type}}</p>
               <p>
                 <ion-icon name="locate" pull-left></ion-icon> {{item.location}}
               </p>
             </ion-col>
-            <ion-col class='price' size="3" float-right text-right>
-              <h1>{{item.price}} / Month</h1>
+            <ion-col class='price' size="5" float-right text-right>
+              <h2> {{item.budget | currency:'INR'}}</h2>
               <a class='view-details'>View Details</a>
             </ion-col>
           </ion-row>
@@ -40,6 +41,6 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button color="warning" shape="round" fill="solid" float-right>Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+    <ion-button *ngIf='showNext' color="warning" shape="round" fill="solid" float-right>Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
 
 </ion-content>

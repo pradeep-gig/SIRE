@@ -56,8 +56,8 @@
         </ion-row>
 
         <ion-row>
-            <ion-button  color="warning" class='reg-btn' shape="round" fill="solid" >Register</ion-button>
-            <span class='reg' routerLink="/register" text-center> Already Registred? <a [routerLink]="['/login']">Login here</a></span>
+            <ion-button color="warning" class='reg-btn' shape="round" fill="solid" [disabled]='!registerForm.valid' (click)='register()'>Register</ion-button>
+            <!-- <span class='reg' routerLink="/register" text-center> Already Registred? <a [routerLink]="['/login']">Login here</a></span> -->
         </ion-row>
 
     </form>

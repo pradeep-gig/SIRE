@@ -1,13 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+      <ion-title>
+          <div class='header-logo'>
+              <ion-img class='logo-img' [src]="logoPath"></ion-img>
+          </div>
+          <h1 class='header-title' text-center> 
+              <ion-menu-button autoHide="false"></ion-menu-button>
+              <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
+              Dashboard
+              <ion-icon name="notifications" float-right ></ion-icon>
+          </h1>
+        </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <p>contents coming soon.</p>
 </ion-content>
 
