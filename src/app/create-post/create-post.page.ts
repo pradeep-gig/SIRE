@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
 
@@ -14,6 +14,7 @@ export class CreatePostPage implements OnInit {
   postForm: FormGroup;
   state = [];
   postCreateObj = {};
+  contacts: FormArray;
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
@@ -28,21 +29,37 @@ export class CreatePostPage implements OnInit {
       }
     });
 
+    //contact: ['',Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
     this.postForm = this.formBuilder.group({
       typeofpost: ['', Validators.compose([Validators.required])],
       title: ['', Validators.compose([Validators.required])],
       location: ['', Validators.compose([])],
-      condition: ['',Validators.compose([Validators.required])],
-      terms: ['',Validators.compose([Validators.required])],
-      type: ['',Validators.compose([Validators.required])],
-      area: ['',Validators.compose([])],
-      dimension: ['',Validators.compose([])],
-      facing: ['',Validators.compose([])],
-      landmark: ['',Validators.compose([])],
-      budget: ['',Validators.compose([Validators.required])],
-      contact: ['',Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
-      comment: ['',Validators.compose([])],
+      condition: ['', Validators.compose([Validators.required])],
+      terms: ['', Validators.compose([Validators.required])],
+      type: ['', Validators.compose([Validators.required])],
+      area: ['', Validators.compose([])],
+      dimension: ['', Validators.compose([])],
+      facing: ['', Validators.compose([])],
+      landmark: ['', Validators.compose([])],
+      budget: ['', Validators.compose([Validators.required])],
+      contacts: this.formBuilder.array([this.createContacts()]),
+      comment: ['', Validators.compose([])],
     });
+  }
+
+  createContacts(): FormGroup {
+    return this.formBuilder.group({
+      contact: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])]
+    });
+  }
+
+  addContact(): void {
+    this.contacts = this.postForm.get('contacts') as FormArray;
+    this.contacts.push(this.createContacts());
+  }
+
+  removeContact(i: number) {
+    this.contacts.removeAt(i);
   }
 
   postSubmit() {
@@ -52,9 +69,17 @@ export class CreatePostPage implements OnInit {
       if (this.postCreateObj[propName] == "") {
         delete this.postCreateObj[propName];
       }
+      if (propName == "contacts") {
+        let contact="";
+        for (let obj of this.postCreateObj[propName]) {
+          contact += (contact === "") ? obj.contact : ',' + obj.contact;
+        }
+        this.postCreateObj['contact'] = contact;
+        delete this.postCreateObj[propName];
+      }
     }
     this.apiService.showLoading();
-    this.apiService.createPost(this.postCreateObj).subscribe(res => {
+    this.apiService.createPost("add_update_post",this.postCreateObj).subscribe(res => {
       this.apiService.hideLoading();
       if(!!res['status'] && res['status'] == "Success"){
         // this.apiService.showToast("Posting done", true, "close", "bottom", 1000);
@@ -62,7 +87,7 @@ export class CreatePostPage implements OnInit {
       }else{
         this.apiService.showToast("Posting failed", true, "close", "bottom", 1000);
       }
-      
+
     },error => {
       this.apiService.hideLoading();
       this.apiService.checkConnectivity();

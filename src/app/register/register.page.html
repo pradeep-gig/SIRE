@@ -16,7 +16,7 @@
         <ion-row margin-top>
           <ion-item class="margin-top-50">
             <ion-label position="floating">
-              Mobile No </ion-label>
+              Mobile No <span class="mandatory">*</span> </ion-label>
             <ion-input type="tel" formControlName="phone"></ion-input>
           </ion-item>
         </ion-row>
@@ -24,7 +24,7 @@
         <ion-row margin-top>
           <ion-item class="margin-top-50">
             <ion-label position="floating">
-              First Name </ion-label>
+              First Name <span class="mandatory">*</span> </ion-label>
             <ion-input type="text" formControlName="firstname"></ion-input>
           </ion-item>
         </ion-row>
@@ -32,14 +32,14 @@
         <ion-row margin-top>
           <ion-item class="margin-top-50">
             <ion-label position="floating">
-              Last Name </ion-label>
+              Last Name <span class="mandatory">*</span> </ion-label>
             <ion-input type="text" formControlName="lastname"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row margin-top>
           <ion-item>
-            <ion-label position="floating"> State </ion-label>
+            <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label>
             <ion-select interface="action-sheet" formControlName="state">
               <ion-select-option *ngFor="let s of state; let i = index" value="{{s}}">{{s}}</ion-select-option>
             </ion-select>
@@ -48,7 +48,7 @@
 
         <ion-row margin-top>
           <ion-item width-50>
-            <ion-label position="floating"> City </ion-label>
+            <ion-label position="floating"> City <span class="mandatory">*</span></ion-label>
             <ion-select interface="action-sheet" formControlName="city">
               <ion-select-option *ngFor="let c of city; let i = index" value="{{c}}">{{c}}</ion-select-option>
             </ion-select>

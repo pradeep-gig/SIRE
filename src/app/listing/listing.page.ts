@@ -10,18 +10,26 @@ import { Router } from '@angular/router';
 })
 export class ListingPage implements OnInit {
   logoPath: string;
+  PostingsResp: Array<any>;
   Postings: Array<any>;
   showNext: boolean = false;
-  constructor( private apiService: ApiService, private router: Router) { }
+  segmentType: string;
+  constructor( private apiService: ApiService, private router: Router) {
+    this.segmentType = "availablity";
+    this.Postings =[];
+   }
 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
-    this.Postings = [];
+    this.PostingsResp = [];
     this.apiService.showLoading();
     this.apiService.getpost().subscribe(res => {
       this.apiService.hideLoading();
       if(res['status'] == 'Success'){
-        this.Postings = res['data'];
+        if(res['data'].length > 0){
+          this.PostingsResp = Object.assign([],res['data']);
+          this.populateListings();
+        }
       }
     },error => {
       this.apiService.hideLoading();
@@ -31,6 +39,16 @@ export class ListingPage implements OnInit {
 
   viewDetails(data) {
     this.router.navigate(['/post-view/' + data.id]);
+  }
+
+  populateListings(){
+    this.Postings = [];
+    this.Postings = this.PostingsResp.filter((postingData) => (postingData.typeofpost === this.segmentType));
+  }
+
+  onSegmentChanged(value: string) {
+    this.segmentType = value;
+    this.populateListings();
   }
 
   // openMenu() {

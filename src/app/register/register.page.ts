@@ -55,10 +55,12 @@ export class RegisterPage implements OnInit {
     if(this.registerForm.valid){
       this.registerFormReq = Object.assign({}, this.registerForm.value);
       this.apiService.showLoading();
-      this.apiService.createUser(this.registerFormReq).subscribe(res => {
+      this.apiService.createUser("create_user",this.registerFormReq).subscribe(res => {
         this.apiService.hideLoading();
         if(!!res['status'] && res['status'] == "Success"){
           this.apiService.showToast("Registered sucessfully, Please login. ", true, "close", "bottom", 1000);
+          this.registerFormReq['userId'] = res['id'] ;
+          sessionStorage.setItem('userdata', JSON.stringify(this.registerFormReq));
           this.router.navigate(['/login']);
         }else{
           this.apiService.showToast("Registration failed", true, "close", "bottom", 1000);

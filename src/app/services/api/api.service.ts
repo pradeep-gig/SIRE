@@ -25,17 +25,18 @@ export class ApiService {
     return this.http.get(this.restBaseUrl+"post_list");
   }
 
-  createPost(data){
-    return this.http.post(this.restBaseUrl+"add_update_post" , data, this.Options);
+  createPost(url: string, data){
+    return this.http.post(this.restBaseUrl+url , data, this.Options);
   }
 
   checkConnectivity(){
     this.showToast('Please check your connectivity or might be temporary down time', false, '', 'bottom', 2000);
   }
 
-  createUser(data){
-    return this.http.post(this.restBaseUrl+"create_user" , data, this.Options);
+  createUser(url: string,data){
+    return this.http.post(this.restBaseUrl+url , data, this.Options);
   }
+  
 
   sendOtp(data){
     return this.http.post(this.restBaseUrl+"generate_otp" , data, this.Options);
@@ -47,6 +48,10 @@ export class ApiService {
 
   hideLoading() {
     document.getElementById('spinner-container').style.display = 'none';
+  }
+
+   getUserpost(userId){
+    return this.http.get(this.restBaseUrl+"get_user_post?user_id="+userId);
   }
 
   async showToast(msg, closeBtn, closeText, postion, duration){

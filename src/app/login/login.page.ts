@@ -52,6 +52,7 @@ export class LoginPage implements OnInit {
      if(res['status'] == 'Success'){
       this.sendOtp = true;
       this.showOtp = false;
+	sessionStorage.setItem('userdata', JSON.stringify(res['user']));
      }else{
        this.apiService.showToast(res['msg'], false, '', 'bottom', 2000);
      }

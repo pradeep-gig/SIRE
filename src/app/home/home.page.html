@@ -15,8 +15,8 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-segment [(ngModel)]="view">
-        <ion-segment-button class="segment-button segment-activated"  value="myPosting">
+    <ion-segment [(ngModel)]="view" (ionChange)="segmentChanged($event.target.value)">
+        <ion-segment-button class="segment-button segment-activated" value="myPosting">
             <ion-label>My Posting</ion-label>
         </ion-segment-button>
         <ion-segment-button value="updateProfile">
@@ -25,13 +25,86 @@
     </ion-segment>
 
     <ion-row margin-top>
-        <ion-item *ngIf='view == "myPosting"'>
-            posting Information
-        </ion-item>
-        <ion-item *ngIf='view == "updateProfile"'>
-            profile Info
-        </ion-item>
+        <div *ngIf='view == "myPosting"'>
+                <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
+                <ion-card *ngFor="let item of Postings let i = index">
+                  <ion-card-content>
+                    <ion-grid>
+                      <ion-row class='listing-item'>
+                        <ion-col class='info' size="7">
+                          <h1>{{item.title}}</h1>
+                          <p>{{item.terms}}</p>
+                          <p><ion-label> Property Type - </ion-label>{{item.type}}</p>
+                          <p>
+                            <ion-icon name="locate" pull-left></ion-icon> {{item.location}}
+                          </p>
+                        </ion-col>
+                        <ion-col class='price' size="5" float-right text-right>
+                          <h2> {{item.budget | currency:'INR'}}</h2>
+                          <ion-icon name="checkmark" routerLink="/edit-user-post" ></ion-icon>
+                          <ion-icon name="close"></ion-icon>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <small>Posted on: {{item.post_date | date:'dd/MM/yyyy HH:mm'}}</small>
+                      </ion-row>
+                    </ion-grid>
+                  </ion-card-content>
+                </ion-card>
+        </div>
     </ion-row>
+    <div *ngIf='view == "updateProfile" && this.userData'>
+        <form class='login-form' [formGroup]="updateForm">
+            <ion-row margin-top>
+                <ion-item class="margin-top-50">
+                    <ion-label position="floating">
+                        Mobile No </ion-label>
+                    <ion-input type="tel" formControlName="phone" readonly></ion-input>
+                </ion-item>
+            </ion-row>
+
+            <ion-row margin-top>
+                <ion-item class="margin-top-50">
+                    <ion-label position="floating">
+                        First Name <span class="mandatory">*</span> </ion-label>
+                    <ion-input type="text" formControlName="firstname"></ion-input>
+                </ion-item>
+            </ion-row>
+
+            <ion-row margin-top>
+                <ion-item class="margin-top-50">
+                    <ion-label position="floating">
+                        Last Name <span class="mandatory">*</span> </ion-label>
+                    <ion-input type="text" formControlName="lastname"></ion-input>
+                </ion-item>
+            </ion-row>
+
+            <ion-row margin-top>
+                <ion-item>
+                    <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label>
+                    <ion-select interface="action-sheet" formControlName="state">
+                        <ion-select-option *ngFor="let s of state; let i = index" value="{{s}}">{{s}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-row>
+
+            <ion-row margin-top>
+                <ion-item width-50>
+                    <ion-label position="floating"> City <span class="mandatory">*</span> </ion-label>
+                    <ion-select interface="action-sheet" formControlName="city">
+                        <ion-select-option *ngFor="let c of city; let i = index" value="{{c}}">{{c}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-row>
+
+            <ion-row>
+                <ion-button color="warning" class='reg-btn' shape="round" fill="solid" [disabled]='!updateForm.valid'
+                    (click)='Update()'>Update</ion-button>
+            </ion-row>
+
+        </form>
+    </div>
 
 </ion-content>
 

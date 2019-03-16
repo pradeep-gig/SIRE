@@ -15,19 +15,30 @@
 </ion-header>
 
 <ion-content padding>
+
+    <ion-segment [(ngModel)]="segmentType" (ionChange)="onSegmentChanged($event.target.value)">
+        <ion-segment-button  value="availablity">
+            <ion-label>Availability</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="requirement">
+            <ion-label>Requirement</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
     <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
-    <!-- <ion-toolbar class="listing-search">
-      <ion-searchbar></ion-searchbar>
-    </ion-toolbar> -->
+    <ion-toolbar class="listing-search">
+      <ion-searchbar debounce="100" [(ngModel)]="searchInput"></ion-searchbar>
+    </ion-toolbar>
     <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
-    <ion-card *ngFor="let item of Postings; let i = index">
-      <ion-card-content >
+    <ion-card *ngFor="let item of Postings | search:searchInput; let i = index">
+      <p text-center *ngIf='item?.records === 0'> No listing to show</p>
+      <ion-card-content *ngIf='item?.records === undefined'>
         <ion-grid>
           <ion-row class='listing-item'>
             <ion-col class='info' size="7">
-              <h1>{{item.title}} - {{item.typeofpost}}</h1>
+              <h1>{{item.title}}</h1>
               <p>{{item.terms}}</p>
-              <p><ion-label> Propert Type - </ion-label>{{item.type}}</p>
+              <p><ion-label> Property Type - </ion-label>{{item.type}}</p>
               <p>
                 <ion-icon name="locate" pull-left></ion-icon> {{item.location}}
               </p>
@@ -36,6 +47,9 @@
               <h2> {{item.budget | currency:'INR'}}</h2>
               <a class='view-details' (click)='viewDetails(item)'>View Details</a>
             </ion-col>
+          </ion-row>
+          <ion-row>
+              <small>Posted on: {{item.post_date | date:'dd/MM/yyyy HH:mm'}}</small>
           </ion-row>
         </ion-grid>
       </ion-card-content>

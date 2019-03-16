@@ -2,12 +2,12 @@
   <ion-toolbar>
     <ion-title>
       <div class='header-logo'>
-          <ion-img class='logo-img' [src]="logoPath"></ion-img>
+        <ion-img class='logo-img' [src]="logoPath"></ion-img>
       </div>
-      <h1 class='header-title' text-center> 
-          <ion-menu-button autoHide="false"></ion-menu-button>
-          SI RE
-          <ion-icon name="notifications" float-right ></ion-icon>
+      <h1 class='header-title' text-center>
+        <ion-menu-button autoHide="false"></ion-menu-button>
+        SI RE
+        <ion-icon name="notifications" float-right></ion-icon>
       </h1>
     </ion-title>
   </ion-toolbar>
@@ -77,7 +77,7 @@
           <ion-select-option value="House"> House</ion-select-option>
         </ion-select>
       </ion-item>
-      
+
       <ion-item>
         <ion-label position="floating"> Area in -Sq.Ft </ion-label>
         <ion-input type="number" formControlName="area"></ion-input>
@@ -113,29 +113,22 @@
       </ion-item>
 
 
-      <!-- <ion-item no-lines>
-        <ion-label position="floating"> Contact No
-          <span class="mandatory">*</span>
-        </ion-label>
-        <ion-input type="tel" formControlName="contact"></ion-input>
-      </ion-item> -->
       <ion-item no-lines>
-        <ion-label position="floating"> Contact No
-          <span class="mandatory">*</span>
-        </ion-label>
-        <div formArrayName="contacts" *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
-          <div [formGroupName]="i">
-            <ion-input type="tel" formControlName="contact"></ion-input> 
-            <ion-button [disabled]="!postForm.controls.contacts.controls[i].valid" (click)="addContact()">
-                <ion-icon name="add"></ion-icon> 
-            </ion-button>
-            <ion-button *ngIf="i > 0" (click)="removeContact(i)">
-                <ion-icon name="close"></ion-icon> 
-            </ion-button>
+          <ion-label position="floating"> Contact No
+            <span class="mandatory">*</span>
+          </ion-label>
+          <div formArrayName="contacts" *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
+            <div [formGroupName]="i">
+              <ion-input type="tel" formControlName="contact"></ion-input> 
+              <ion-button [disabled]="!postForm.controls.contacts.controls[i].valid" shape="round" fill="solid" (click)="addContact()">
+                  <ion-icon name="add"></ion-icon> 
+              </ion-button>
+              <ion-button *ngIf="i > 0" shape="round" fill="solid"(click)="removeContact(i)">
+                  <ion-icon name="close"></ion-icon> 
+              </ion-button>
+            </div>
           </div>
-        </div>
-      </ion-item>
-
+        </ion-item>
       <ion-item>
         <ion-label position="floating" rows="3" cols="20">Comments</ion-label>
         <ion-textarea formControlName="comment"></ion-textarea>
@@ -146,6 +139,7 @@
     <ion-button [disabled]="!postForm.valid" (click)='postSubmit()' color="warning" shape="round" fill="solid"
       float-right>Submit</ion-button>
     <ion-button color="warning" shape="round" (click)='clear()' fill="solid" float-right>Clear</ion-button>
+
 
   </form>
 </ion-content>
