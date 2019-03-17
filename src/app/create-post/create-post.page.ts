@@ -15,11 +15,13 @@ export class CreatePostPage implements OnInit {
   state = [];
   postCreateObj = {};
   contacts: FormArray;
+  userInfo = {};
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
-
+ 
   ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
-
+    this.userInfo = this.apiService.getSessionData();
+    console.log(this.userInfo);
     this.apiService.getStates().subscribe(res => {
       console.log(res);
       for(let state in res){
@@ -42,20 +44,20 @@ export class CreatePostPage implements OnInit {
       facing: ['', Validators.compose([])],
       landmark: ['', Validators.compose([])],
       budget: ['', Validators.compose([Validators.required])],
-      contacts: this.formBuilder.array([this.createContacts()]),
+      contacts: this.formBuilder.array([this.createContacts(this.userInfo['phone'])]),
       comment: ['', Validators.compose([])],
     });
   }
 
-  createContacts(): FormGroup {
+  createContacts(phone): FormGroup {
     return this.formBuilder.group({
-      contact: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])]
+      contact: [(!!phone && phone != '') ? phone : "", Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])]
     });
   }
 
   addContact(): void {
     this.contacts = this.postForm.get('contacts') as FormArray;
-    this.contacts.push(this.createContacts());
+    this.contacts.push(this.createContacts(''));
   }
 
   removeContact(i: number) {
@@ -63,7 +65,7 @@ export class CreatePostPage implements OnInit {
   }
 
   postSubmit() {
-    this.postCreateObj = Object.assign({'user': 1}, this.postForm.value);
+    this.postCreateObj = Object.assign({'user': this.userInfo['ID']}, this.postForm.value);
     
     for (var propName in this.postCreateObj) { 
       if (this.postCreateObj[propName] == "") {

@@ -15,7 +15,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   sendOtp: boolean;
   showOtp: boolean;
-
+  otp: number;
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { 
     
   }
@@ -41,18 +41,24 @@ export class LoginPage implements OnInit {
 
   login(){
     if(this.loginForm.valid){
-      this.router.navigate(['/listing']);
+      if(this.loginForm.value.otp == this.otp){
+        this.router.navigate(['/listing']);
+      }
+      else{
+        this.apiService.showToast("Invalid OTP please try again", false, '', 'bottom', 2000);
+      }
     }
   }
 
   generateOtp(){
     this.apiService.showLoading();
-    this.apiService.sendOtp({'phone': this.loginForm.value.phone}).subscribe(res => {
+    this.apiService.sendOtp({'phone': this.loginForm.value.phone}, false).subscribe(res => {
     this.apiService.hideLoading();
      if(res['status'] == 'Success'){
       this.sendOtp = true;
       this.showOtp = false;
-	sessionStorage.setItem('userdata', JSON.stringify(res['user']));
+      this.otp = res['otp'];
+	    this.apiService.setSessionData(res['user']);
      }else{
        this.apiService.showToast(res['msg'], false, '', 'bottom', 2000);
      }

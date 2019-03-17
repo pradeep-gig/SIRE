@@ -1,11 +1,18 @@
-.container-bg .inner-scroll {
-    background: rgb(255,145,76);
+.container-bg {
+    --background: rgb(255,145,76);
+}
+
+.logo-img-container {
+    padding: 30px;
+    background: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .logo-img {
-    width: 200px;
-    position: relative;
-    margin: auto auto;
+    --width: 200px;
+    --position: relative;
+    --margin: auto auto;
 }
 
 .login-form {

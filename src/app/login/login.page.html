@@ -1,5 +1,5 @@
 <ion-content class='container-bg' padding>
-  <div>
+  <div class='logo-img-container'>
     <ion-img class='logo-img' [src]="logoPath"></ion-img>
   </div>
 
@@ -15,7 +15,7 @@
      
       <ion-row margin-top>
         <a class='resend' tabindex="0" text-right *ngIf='showOtp' (click)='generateOtp()'> <ion-icon name="paper-plane" margin-right></ion-icon> Send OTP</a>  
-        <a class='resend' tabindex="0" text-right *ngIf='sendOtp'> <ion-icon name="sync" margin-right></ion-icon> Resend OTP</a>
+        <a class='resend' tabindex="0" text-right *ngIf='sendOtp' (click)='generateOtp()'> <ion-icon name="sync" margin-right></ion-icon> Resend OTP</a>
         <ion-item class="margin-top-50">
           <ion-label position="floating">
             <ion-icon name="lock" margin-right></ion-icon> OTP </ion-label>

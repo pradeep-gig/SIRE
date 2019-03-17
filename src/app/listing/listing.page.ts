@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
+import { IonInfiniteScroll } from '@ionic/angular';
 // import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -19,11 +20,15 @@ export class ListingPage implements OnInit {
     this.Postings =[];
    }
 
-  ngOnInit() {
+   public async ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
     this.PostingsResp = [];
     this.apiService.showLoading();
-    this.apiService.getpost().subscribe(res => {
+    this.fetchPosting(0);
+  }
+
+  fetchPosting(offset){
+    this.apiService.getpost(offset).subscribe(res => {
       this.apiService.hideLoading();
       if(res['status'] == 'Success'){
         if(res['data'].length > 0){

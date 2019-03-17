@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +20,11 @@ export class HomePage {
   isLoadProfile: boolean =true;
   userData: any;
   Postings: [];
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService) {
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) {
 
   }
 
-  ngOnInit() {
+  public async ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
     this.view = 'myPosting';
     this.userData = JSON.parse(sessionStorage.getItem('userdata'));
@@ -33,6 +34,10 @@ export class HomePage {
     //   console.log(error);
     // });
 
+    this.getPost();
+  }
+
+  getPost() {
     this.apiService.showLoading();
     this.apiService.getpost().subscribe(res => {
       this.apiService.hideLoading();
@@ -45,7 +50,29 @@ export class HomePage {
       this.apiService.hideLoading();
       this.apiService.checkConnectivity();
     });
-}
+  }
+
+  editPost(data){
+    // this.router.navigate(['/edit-post/' + data.id]);
+    this.router.navigate(['/edit-post/' + data.id]);
+    // this.router.navigate(['/post-view/' + data.id]);
+  }
+
+  deletePost(data){
+    this.apiService.showLoading();
+    this.apiService.deletePost({'id': data.id}).subscribe(res => {
+      this.apiService.hideLoading();
+      if(!!res['status'] && res['status'] == "Success"){
+        this.apiService.showToast("Post deleted sucessfully", true, "close", "bottom", 1000);
+        this.getPost();
+      }else{
+        this.apiService.showToast((!!res['msg'] ) ? res['msg'] : "Post delete failed", true, "close", "bottom", 1000);
+      }
+    },err => {
+      this.apiService.hideLoading();
+        this.apiService.checkConnectivity();
+    });
+  }
 
   loadProfileData(userData: any) {
     this.apiService.getStates().subscribe(res => {
@@ -83,9 +110,9 @@ export class HomePage {
 
   update() {
     if (this.updateForm.valid) {
-      let updateFormReq = Object.assign({}, this.updateForm.value);
+      let updateFormReq = Object.assign({'ID': this.userData['ID']}, this.updateForm.value);
       this.apiService.showLoading();
-      this.apiService.createUser("", updateFormReq).subscribe(res => {
+      this.apiService.createUser("sire_create_user", updateFormReq).subscribe(res => {
         this.apiService.hideLoading();
         if (!!res['status'] && res['status'] == "Success") {
           this.apiService.showToast("Updated sucessfully", true, "close", "bottom", 1000);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormArray  } from '@angular/forms';
 import { ApiService } from '../services/api/api.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -15,9 +15,11 @@ export class EditPostPage implements OnInit {
   state = [];
   postCreateObj = {};
   contacts: FormArray;
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
+  postData: any;
+  showForm = false;
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
+  public async ngOnInit() {
     this.apiService.getStates().subscribe(res => {
       for (let state in res) {
         if (state == 'Tamil Nadu') {
@@ -25,42 +27,46 @@ export class EditPostPage implements OnInit {
         }
       }
     });
-    this.logoPath = '../../assets/images/logo.png';
-    let postData = {
-      "id": 57,
-      "user": "1",
-      "title": "Need 2 grounds property in ashok nagar",
-      "content": "",
-      "post_date": "2019-03-10 16:45:04",
-      "typeofpost": "requirement",
-      "location": "Chennai",
-      "area": "2400",
-      "condition": "New",
-      "terms": "For Sale",
-      "type": "Land",
-      "dimension": "40 by 60",
-      "facing": "all",
-      "landmark": "near pillar",
-      "budget": "333",
-      "contact": "9871042906,1234567890",
-      "comment": "this is a test message"
-    }
-    this.postForm = this.formBuilder.group({
-      typeofpost: [postData.typeofpost, Validators.compose([Validators.required])],
-      title: [postData.title, Validators.compose([Validators.required])],
-      location: [postData.location, Validators.compose([])],
-      condition: [postData.condition,Validators.compose([Validators.required])],
-      terms: [postData.terms,Validators.compose([Validators.required])],
-      type: [postData.type,Validators.compose([Validators.required])],
-      area: [postData.area,Validators.compose([])],
-      dimension: [postData.dimension,Validators.compose([])],
-      facing: [postData.facing,Validators.compose([])],
-      landmark: [postData.landmark,Validators.compose([])],
-      budget: [postData.budget,Validators.compose([Validators.required])],
-      contacts: this.formBuilder.array([]),
-      comment: [postData.comment,Validators.compose([])],
+    this.apiService.getSinglePost(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {
+      this.apiService.hideLoading();
+      if(res['status'] == "Success"){
+        if(!!res['data']){
+          this.postData = res['data'];
+          this.buildForm();
+          this.showForm = true;
+        }
+      }else{
+        this.showForm = false;
+        this.apiService.showToast((!!res['msg']) ? res['msg'] : "Failed to Fetch post details", true, "close", "bottom", 1000);
+      }
+    }, err => {
+      this.apiService.hideLoading();
+      this.apiService.checkConnectivity();
     });
-    this.addContactValues(postData.contact);
+    
+
+    this.logoPath = '../../assets/images/logo.png';
+
+    
+  }
+
+  buildForm(){
+    this.postForm = this.formBuilder.group({
+      typeofpost: [this.postData.typeofpost, Validators.compose([Validators.required])],
+      title: [this.postData.title, Validators.compose([Validators.required])],
+      location: [this.postData.location, Validators.compose([])],
+      condition: [this.postData.condition,Validators.compose([Validators.required])],
+      terms: [this.postData.terms,Validators.compose([Validators.required])],
+      type: [this.postData.type,Validators.compose([Validators.required])],
+      area: [this.postData.area,Validators.compose([])],
+      dimension: [this.postData.dimension,Validators.compose([])],
+      facing: [this.postData.facing,Validators.compose([])],
+      landmark: [this.postData.landmark,Validators.compose([])],
+      budget: [this.postData.budget,Validators.compose([Validators.required])],
+      contacts: this.formBuilder.array([]),
+      comment: [this.postData.comment,Validators.compose([])],
+    });
+    this.addContactValues(this.postData.contact);
   }
 
   addContactValues(contacts){
@@ -85,7 +91,7 @@ export class EditPostPage implements OnInit {
   }
 
   postSubmit() {
-    this.postCreateObj = Object.assign({'user': 1}, this.postForm.value);
+    this.postCreateObj = Object.assign({'user': 1, 'ID': this.activatedRoute.snapshot.paramMap.get('id')}, this.postForm.value);
     
     for (var propName in this.postCreateObj) { 
       if (this.postCreateObj[propName] == "") {
@@ -105,7 +111,7 @@ export class EditPostPage implements OnInit {
       this.apiService.hideLoading();
       if(!!res['status'] && res['status'] == "Success"){
         // this.apiService.showToast("Posting done", true, "close", "bottom", 1000);
-        this.router.navigate(['/listing']);
+        this.router.navigate(['/home']);
       }else{
         this.apiService.showToast("Posting failed", true, "close", "bottom", 1000);
       }

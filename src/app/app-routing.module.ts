@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'create-post', loadChildren: './create-post/create-post.module#CreatePostPageModule' },
   { path: 'post-view/:id', loadChildren: './post-view/post-view.module#PostViewPageModule' },
   { path: 'landing', loadChildren: './landing/landing.module#LandingPageModule' },
-  { path: 'edit-user-post', loadChildren: './edit-post/edit-post.module#EditPostPageModule' },
+  { path: 'edit-post/:id', loadChildren: './edit-post/edit-post.module#EditPostPageModule' },
 ];
 
 @NgModule({

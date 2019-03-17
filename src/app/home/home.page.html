@@ -41,8 +41,8 @@
                         </ion-col>
                         <ion-col class='price' size="5" float-right text-right>
                           <h2> {{item.budget | currency:'INR'}}</h2>
-                          <ion-icon name="checkmark" routerLink="/edit-user-post" ></ion-icon>
-                          <ion-icon name="close"></ion-icon>
+                          <ion-icon class='edit-icon' name="create" (click)='editPost(item)' ></ion-icon>
+                          <ion-icon class='delete-icon' name="trash" (click)='deletePost(item)'></ion-icon>
                         </ion-col>
                       </ion-row>
                       <ion-row>
@@ -59,7 +59,7 @@
                 <ion-item class="margin-top-50">
                     <ion-label position="floating">
                         Mobile No </ion-label>
-                    <ion-input type="tel" formControlName="phone" readonly></ion-input>
+                    <ion-input type="tel" formControlName="phone" disabled readonly></ion-input>
                 </ion-item>
             </ion-row>
 
@@ -81,8 +81,8 @@
 
             <ion-row margin-top>
                 <ion-item>
-                    <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label>
-                    <ion-select interface="action-sheet" formControlName="state">
+                    <!-- <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label> -->
+                    <ion-select interface="action-sheet" placeholder='state *'  formControlName="state">
                         <ion-select-option *ngFor="let s of state; let i = index" value="{{s}}">{{s}}
                         </ion-select-option>
                     </ion-select>
@@ -91,8 +91,8 @@
 
             <ion-row margin-top>
                 <ion-item width-50>
-                    <ion-label position="floating"> City <span class="mandatory">*</span> </ion-label>
-                    <ion-select interface="action-sheet" formControlName="city">
+                    <!-- <ion-label position="floating"> City <span class="mandatory">*</span> </ion-label> -->
+                    <ion-select interface="action-sheet" placeholder='city *' formControlName="city">
                         <ion-select-option *ngFor="let c of city; let i = index" value="{{c}}">{{c}}</ion-select-option>
                     </ion-select>
                 </ion-item>
@@ -100,7 +100,7 @@
 
             <ion-row>
                 <ion-button color="warning" class='reg-btn' shape="round" fill="solid" [disabled]='!updateForm.valid'
-                    (click)='Update()'>Update</ion-button>
+                    (click)='update()'>Update</ion-button>
             </ion-row>
 
         </form>

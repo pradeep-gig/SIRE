@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content padding>
-  <form class='login-form' [formGroup]="postForm">
+  <form class='login-form' *ngIf='showForm' [formGroup]="postForm">
     <ion-row margin-top>
       <ion-item>
         <ion-label position="floating"> Post Type
@@ -81,7 +81,7 @@
       <ion-item>
         <ion-label position="floating"> Area in -Sq.Ft </ion-label>
         <ion-input type="number" formControlName="area"></ion-input>
-        <span>Sq.ft/</span>
+        <!-- <span>Sq.ft/</span> -->
       </ion-item>
 
       <ion-item>
@@ -117,7 +117,7 @@
           <ion-label position="floating"> Contact No
             <span class="mandatory">*</span>
           </ion-label>
-          <div formArrayName="contacts" *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
+          <div formArrayName="contacts" style='width: 100%;' *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
             <div [formGroupName]="i">
               <ion-input type="tel" formControlName="contact"></ion-input> 
               <ion-button [disabled]="!postForm.controls.contacts.controls[i].valid" shape="round" fill="solid" (click)="addContact()">
@@ -137,7 +137,7 @@
 
 
     <ion-button [disabled]="!postForm.valid" (click)='postSubmit()' color="warning" shape="round" fill="solid"
-      float-right>Submit</ion-button>
+      float-right>Update</ion-button>
     <ion-button color="warning" shape="round" (click)='clear()' fill="solid" float-right>Clear</ion-button>
 
 

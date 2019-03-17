@@ -55,6 +55,16 @@
           </ion-item>
         </ion-row>
 
+        <ion-row margin-top>
+            <a class='resend' tabindex="0" text-right *ngIf='showOtp' (click)='generateOtp()'> <ion-icon name="paper-plane" margin-right></ion-icon> Send OTP</a>  
+            <a class='resend' tabindex="0" text-right *ngIf='sendOtp' (click)='generateOtp()'> <ion-icon name="sync" margin-right></ion-icon> Resend OTP</a>
+            <ion-item class="margin-top-50">
+              <ion-label position="floating">
+                Otp <span class="mandatory">*</span> </ion-label>
+              <ion-input type="text" formControlName="otp"></ion-input>
+            </ion-item>
+        </ion-row>
+
         <ion-row>
             <ion-button color="warning" class='reg-btn' shape="round" fill="solid" [disabled]='!registerForm.valid' (click)='register()'>Register</ion-button>
             <!-- <span class='reg' routerLink="/register" text-center> Already Registred? <a [routerLink]="['/login']">Login here</a></span> -->

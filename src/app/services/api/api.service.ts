@@ -8,7 +8,6 @@ import { ToastController } from '@ionic/angular';
 export class ApiService {
 
   restBaseUrl = 'https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=';
-
   Options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -21,8 +20,12 @@ export class ApiService {
     return this.http.get('../../../assets/json/stateAndCity.json');
   }
 
-  getpost(){
-    return this.http.get(this.restBaseUrl+"post_list");
+  getpost(offset){
+    return this.http.get(this.restBaseUrl+"post_list&start="+offset);
+  }
+
+  getSinglePost(id){
+    return this.http.get(this.restBaseUrl+"get_single_post&id="+id);
   }
 
   createPost(url: string, data){
@@ -37,9 +40,16 @@ export class ApiService {
     return this.http.post(this.restBaseUrl+url , data, this.Options);
   }
   
+  deletePost(data){
+    return this.http.post(this.restBaseUrl+"delete_post", data, this.Options);
+  }
 
-  sendOtp(data){
-    return this.http.post(this.restBaseUrl+"generate_otp" , data, this.Options);
+  sendOtp(data, isRegister){
+    if(isRegister){
+      return this.http.post(this.restBaseUrl+"generate_otp&flag=register" , data, this.Options);
+    }else{
+      return this.http.post(this.restBaseUrl+"generate_otp" , data, this.Options);
+    }
   }
 
   showLoading() {
@@ -52,6 +62,18 @@ export class ApiService {
 
    getUserpost(userId){
     return this.http.get(this.restBaseUrl+"get_user_post?user_id="+userId);
+  }
+
+  fetchPost(data){
+    return this.http.get(this.restBaseUrl+"get_single_post&id="+data);
+  }
+
+  setSessionData(data){
+    sessionStorage.setItem('userdata', JSON.stringify(data));
+  }
+
+  getSessionData(){
+    return JSON.parse(sessionStorage.getItem('userdata'));
   }
 
   async showToast(msg, closeBtn, closeText, postion, duration){

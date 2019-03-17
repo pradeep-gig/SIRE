@@ -15,10 +15,18 @@ export class RegisterPage implements OnInit {
   state = [];
   city = [];
   registerFormReq = {};
+  sendOtp: boolean;
+  showOtp: boolean;
+  isRegister: boolean;
+  otp: number;
+
   constructor(private formBuilder: FormBuilder,
     private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
+    this.sendOtp = false;
+    this.showOtp = true;
+    this.isRegister = false;
     this.logoPath = '../../assets/images/logo.png';
 
     this.apiService.getStates().subscribe(res => {
@@ -36,6 +44,7 @@ export class RegisterPage implements OnInit {
       lastname: ['', Validators.compose([Validators.required])],
       state: ['',Validators.compose([Validators.required])],
       city: ['',Validators.compose([Validators.required])],
+      otp: ['',Validators.compose([Validators.required])],
     });
 
     this.onChanges();
@@ -51,11 +60,31 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  generateOtp(){
+    this.apiService.showLoading();
+    this.apiService.sendOtp({'phone': this.registerForm.value.phone}, true).subscribe(res => {
+    this.apiService.hideLoading();
+     if(res['status'] == 'Success'){
+      this.sendOtp = true;
+      this.showOtp = false;
+      this.isRegister = true;
+      this.otp = res['otp'];
+     }else{
+       this.apiService.showToast(res['msg'], false, '', 'bottom', 2000);
+     }
+    }, error => {
+      this.apiService.hideLoading();
+      this.apiService.checkConnectivity();
+    });
+  }
+
   register(){
-    if(this.registerForm.valid){
+    if(this.registerForm.valid && this.otp == this.registerForm.value.otp){
+      
       this.registerFormReq = Object.assign({}, this.registerForm.value);
+      delete this.registerFormReq['otp'];
       this.apiService.showLoading();
-      this.apiService.createUser("create_user",this.registerFormReq).subscribe(res => {
+      this.apiService.createUser("sire_create_user",this.registerFormReq).subscribe(res => {
         this.apiService.hideLoading();
         if(!!res['status'] && res['status'] == "Success"){
           this.apiService.showToast("Registered sucessfully, Please login. ", true, "close", "bottom", 1000);
@@ -63,7 +92,7 @@ export class RegisterPage implements OnInit {
           sessionStorage.setItem('userdata', JSON.stringify(this.registerFormReq));
           this.router.navigate(['/login']);
         }else{
-          this.apiService.showToast("Registration failed", true, "close", "bottom", 1000);
+          this.apiService.showToast((!!res['msg'] ) ? res['msg'] : "Registration failed", true, "close", "bottom", 1000);
         }
         
       },error => {
@@ -71,6 +100,8 @@ export class RegisterPage implements OnInit {
         this.apiService.checkConnectivity();
       });
 
+    }else{
+      this.apiService.showToast("Please enter a valid OTP, to register", false, '', 'bottom', 2000);
     }
   }
 

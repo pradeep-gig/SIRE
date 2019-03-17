@@ -110,3 +110,16 @@ ion-menu-button{
 .mandatory{
   color: red;
 }
+
+.edit-icon {
+  color: orange;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.delete-icon { color: red; font-size: 22px; cursor: pointer;}
+
+.item-native {
+  --background-color: transparent !important;
+}
+input.text { background-color:transparent }
