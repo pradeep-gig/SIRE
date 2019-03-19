@@ -37,9 +37,15 @@ export class HomePage {
     this.getPost();
   }
 
+  ionViewDidEnter(){
+    this.view = 'myPosting';
+    this.getPost();
+  }
+
   getPost() {
+    this.Postings = [];
     this.apiService.showLoading();
-    this.apiService.getpost().subscribe(res => {
+    this.apiService.getUserPost(this.userData['ID']).subscribe(res => {
       this.apiService.hideLoading();
       if(res['status'] == 'Success'){
         if(res['data'].length > 0){

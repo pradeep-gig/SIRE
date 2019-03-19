@@ -20,12 +20,16 @@ export class ApiService {
     return this.http.get('../../../assets/json/stateAndCity.json');
   }
 
-  getpost(offset){
-    return this.http.get(this.restBaseUrl+"post_list&start="+offset);
+  getpost(offset, query, type){
+    return this.http.get(this.restBaseUrl+"post_list&start="+offset+"&search="+query+"&typeofpost="+type);
   }
 
   getSinglePost(id){
     return this.http.get(this.restBaseUrl+"get_single_post&id="+id);
+  }
+
+  getUserPost(id){
+    return this.http.get(this.restBaseUrl+"get_user_post&user_id="+id);
   }
 
   createPost(url: string, data){

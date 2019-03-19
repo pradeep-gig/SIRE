@@ -27,10 +27,10 @@
 
     <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
     <ion-toolbar class="listing-search">
-      <ion-searchbar debounce="100" [(ngModel)]="searchInput"></ion-searchbar>
+      <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
-    <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
-    <ion-card *ngFor="let item of Postings | search:searchInput; let i = index">
+    <p text-center *ngIf='!!PostingsResp && PostingsResp.length == 0'> {{showText}}</p>
+    <ion-card *ngFor="let item of PostingsResp; let i = index">
       <p text-center *ngIf='item?.records === 0'> No listing to show</p>
       <ion-card-content *ngIf='item?.records === undefined'>
         <ion-grid>
@@ -55,6 +55,8 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button *ngIf='showNext' color="warning" shape="round" fill="solid" float-right>Next <ion-icon name="arrow-forward"></ion-icon></ion-button>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

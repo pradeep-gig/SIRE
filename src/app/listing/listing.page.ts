@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
+import {interval} from "rxjs";
 import { IonInfiniteScroll } from '@ionic/angular';
 // import { MenuController } from '@ionic/angular';
 
@@ -15,25 +16,68 @@ export class ListingPage implements OnInit {
   Postings: Array<any>;
   showNext: boolean = false;
   segmentType: string;
+  searchInput: string = "";
+  offsetVal = 0;
+  showText = "Loading posts..."
   constructor( private apiService: ApiService, private router: Router) {
     this.segmentType = "availablity";
     this.Postings =[];
    }
-
+   ionViewDidEnter(){
+    this.segmentType = "availablity";
+    this.Postings =[];
+    this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+   }
    public async ngOnInit() {
     this.logoPath = '../../assets/images/logo.png';
     this.PostingsResp = [];
     this.apiService.showLoading();
-    this.fetchPosting(0);
+    this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
   }
 
-  fetchPosting(offset){
-    this.apiService.getpost(offset).subscribe(res => {
+  search(e){
+    this.offsetVal = 0;
+    this.apiService.showLoading();
+    this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
+  }
+
+  onCancel(e){
+    const subscription = setTimeout(() => {
+      this.offsetVal = 0;
+      this.apiService.showLoading();
+      this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
+    }, 500);
+  }
+
+  doInfinite(infiniteScroll){
+    this.offsetVal =+ 1;
+    this.apiService.getpost(this.offsetVal, this.searchInput, this.segmentType).subscribe(res => {
+      infiniteScroll.target.complete();
+      if(res['status'] == 'Success'){
+        if(res['data'].length > 0){
+          let obj = Object.assign([],res['data']);
+          for(let row in obj){
+            this.PostingsResp.push(obj[row]);
+          }
+        }
+      }
+    },error => {
+      infiniteScroll.target.complete();
+      this.apiService.checkConnectivity();
+    });
+  }
+
+  fetchPosting(offset, search, type){
+    this.PostingsResp = [];
+    this.showText = 'Loading posts...';
+    this.apiService.getpost(offset, search, type).subscribe(res => {
       this.apiService.hideLoading();
       if(res['status'] == 'Success'){
         if(res['data'].length > 0){
           this.PostingsResp = Object.assign([],res['data']);
-          this.populateListings();
+          // this.populateListings();
+        }else{
+          this.showText = 'No posts to show';;
         }
       }
     },error => {
@@ -52,8 +96,11 @@ export class ListingPage implements OnInit {
   }
 
   onSegmentChanged(value: string) {
+    this.searchInput = '';
+    this.offsetVal = 0;
     this.segmentType = value;
-    this.populateListings();
+    this.apiService.showLoading();
+    this.fetchPosting(this.offsetVal, this.searchInput, value);
   }
 
   // openMenu() {

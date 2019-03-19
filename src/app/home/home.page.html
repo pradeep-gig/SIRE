@@ -25,7 +25,7 @@
     </ion-segment>
 
     <ion-row margin-top>
-        <div *ngIf='view == "myPosting"'>
+        <div  size="12" *ngIf='view == "myPosting"'>
                 <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
                 <ion-card *ngFor="let item of Postings let i = index">
                   <ion-card-content>
