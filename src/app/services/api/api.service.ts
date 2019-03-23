@@ -24,6 +24,10 @@ export class ApiService {
     return this.http.get(this.restBaseUrl+"post_list&start="+offset+"&search="+query+"&typeofpost="+type);
   }
 
+  gettotaluser(){
+    return this.http.get(this.restBaseUrl+"get_total_users");
+  }
+
   getSinglePost(id){
     return this.http.get(this.restBaseUrl+"get_single_post&id="+id);
   }

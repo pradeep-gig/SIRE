@@ -1,14 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
+      <div class="header">
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
       </div>
       <h1 class='header-title' text-center> 
           <ion-menu-button autoHide="false"></ion-menu-button>
-          SI RE
+          Create Post
           <ion-icon name="notifications" float-right ></ion-icon>
       </h1>
+    </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -52,6 +54,7 @@
           <ion-select-option value="For Sale">For Sale</ion-select-option>
           <ion-select-option value="For Rental">For Rental</ion-select-option>
           <ion-select-option value="For Lease">For Lease</ion-select-option>
+          <ion-select-option value="For JV">For JV</ion-select-option>
         </ion-select>
       </ion-item>
 
@@ -81,12 +84,12 @@
       <ion-item>
         <ion-label position="floating"> Area in -Sq.Ft </ion-label>
         <ion-input type="number" formControlName="area"></ion-input>
-        <!-- <span>Sq.ft/</span> -->
+        <span class="sqft-placeholder">Sq.ft</span>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating"> Dimension </ion-label>
-        <ion-input type="number" formControlName="dimension"></ion-input>
+        <ion-input type="text" formControlName="dimension"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -124,7 +127,7 @@
           <span class="mandatory">*</span>
         </ion-label>
         <br>
-        <div style='width: 100%;' formArrayName="contacts" *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
+        <!-- <div style='width: 100%;' formArrayName="contacts" *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
           <div [formGroupName]="i">
             <ion-input type="tel" formControlName="contact"></ion-input> 
             <ion-button [disabled]="!postForm.controls.contacts.controls[i].valid" (click)="addContact()">
@@ -134,7 +137,8 @@
                 <ion-icon name="close"></ion-icon> 
             </ion-button>
           </div>
-        </div>
+        </div> -->
+        <ion-input type="text" formControlName="contact"></ion-input>
       </ion-item>
 
       <ion-item>

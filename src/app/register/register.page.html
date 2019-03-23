@@ -1,12 +1,18 @@
-<ion-header>
+<ion-header >
+ 
   <ion-toolbar>
     <ion-title>
+       <div class="header">
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
+          <div class='header-title'>
+           <ion-icon name="arrow-back" float-left routerLink="/login"></ion-icon> <h1  text-center>REGISTER</h1>
+        </div>
       </div>
-      <h1 class='header-title' text-center> <ion-icon name="arrow-back" float-left routerLink="/login"></ion-icon> REGISTER</h1>
+     </div>
     </ion-title>
   </ion-toolbar>
+ 
 </ion-header>
 
 <ion-content padding>

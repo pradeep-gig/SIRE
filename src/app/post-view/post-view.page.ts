@@ -11,6 +11,8 @@ export class PostViewPage implements OnInit {
   logoPath: string;
   postingInfo = {};
   displayInfo = [];
+  displayLabel = {};
+  title = '';
 
   showData = false;
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { 
@@ -30,6 +32,10 @@ export class PostViewPage implements OnInit {
           if(post != 'id' && post != 'user' && this.postingInfo[post] != ''){
             let obj = {'name': post, 'value': this.postingInfo[post]};
             this.displayInfo.push(obj);
+
+            if(post == 'title'){
+              this.title = this.postingInfo[post];
+            }
           }
         }
       }else{
@@ -43,7 +49,7 @@ export class PostViewPage implements OnInit {
     });
 
 
-
+    this.displayLabel = {title: 'Title', typeofpost: 'Type of Post', location: 'Property Location', propertyarea:'Property Area', terms:'Terms', condition:'Property Condition',  type:'Property Type', area:'Area', dimension:'Dimension', facing:'Facing', landmark:'Landmark', budget:'Budget', contact:'Contact Number', comment:'Comments'};
   }
 
 }

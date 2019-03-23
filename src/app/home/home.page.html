@@ -25,7 +25,7 @@
     </ion-segment>
 
     <ion-row margin-top>
-        <div  size="12" *ngIf='view == "myPosting"'>
+        <div  size="12" *ngIf='view == "myPosting"' class="posting-container">
                 <p text-center *ngIf='!!Postings && Postings.length == 0'> No listing to show</p>
                 <ion-card *ngFor="let item of Postings let i = index">
                   <ion-card-content>
@@ -81,7 +81,7 @@
 
             <ion-row margin-top>
                 <ion-item>
-                    <!-- <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label> -->
+                    <ion-label position="floating"> State <span class="mandatory">*</span> </ion-label>
                     <ion-select interface="action-sheet" placeholder='state *'  formControlName="state">
                         <ion-select-option *ngFor="let s of state; let i = index" value="{{s}}">{{s}}
                         </ion-select-option>
@@ -91,7 +91,7 @@
 
             <ion-row margin-top>
                 <ion-item width-50>
-                    <!-- <ion-label position="floating"> City <span class="mandatory">*</span> </ion-label> -->
+                    <ion-label position="floating"> City <span class="mandatory">*</span> </ion-label>
                     <ion-select interface="action-sheet" placeholder='city *' formControlName="city">
                         <ion-select-option *ngFor="let c of city; let i = index" value="{{c}}">{{c}}</ion-select-option>
                     </ion-select>

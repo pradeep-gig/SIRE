@@ -13,6 +13,7 @@
 ion-item {
     width: 100%;
     background-color: transparent;
+    position: relative;
 }
 
 .my-custom-menu {
@@ -123,3 +124,4 @@ ion-menu-button{
   --background-color: transparent !important;
 }
 input.text { background-color:transparent }
+.inner-scroll{ padding:0;}

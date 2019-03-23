@@ -117,7 +117,7 @@
           <ion-label position="floating"> Contact No
             <span class="mandatory">*</span>
           </ion-label>
-          <div formArrayName="contacts" style='width: 100%;' *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
+         <!--  <div formArrayName="contacts" style='width: 100%;' *ngFor="let contact of postForm.get('contacts').controls; let i = index;">
             <div [formGroupName]="i">
               <ion-input type="tel" formControlName="contact"></ion-input> 
               <ion-button [disabled]="!postForm.controls.contacts.controls[i].valid" shape="round" fill="solid" (click)="addContact()">
@@ -127,7 +127,8 @@
                   <ion-icon name="close"></ion-icon> 
               </ion-button>
             </div>
-          </div>
+          </div> -->
+          <ion-input type="text" formControlName="contact"></ion-input>
         </ion-item>
       <ion-item>
         <ion-label position="floating" rows="3" cols="20">Comments</ion-label>

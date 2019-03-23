@@ -16,13 +16,13 @@
 <ion-content padding *ngIf='showData'>
   <ion-row margin-top>
     <ion-item>
-      <h1 text-center>Title</h1>
+      <h1 class="text-center">{{title}}</h1>
     </ion-item>
   </ion-row>
 
-  <ion-row margin-top *ngFor='let item of displayInfo; let i = index'>
+  <ion-row margin-top *ngFor='let item of displayInfo; let i = index' [hidden]="item.name == 'title'">
       <ion-item>
-          <ion-label> {{item.name}} </ion-label>
+          <ion-label> {{displayLabel[item.name]}} </ion-label>
           <ion-label> {{item.value}} </ion-label>
       </ion-item>
   </ion-row>

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar  style="background-image:src('assets/images/inner-pageheDER.png')">
     <ion-title>
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
@@ -16,6 +16,11 @@
 
 <ion-content padding>
 
+    <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
+    <ion-toolbar class="listing-search">
+      <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
+    </ion-toolbar>
+
     <ion-segment [(ngModel)]="segmentType" (ionChange)="onSegmentChanged($event.target.value)">
         <ion-segment-button  value="availablity">
             <ion-label>Availability</ion-label>
@@ -25,18 +30,15 @@
         </ion-segment-button>
     </ion-segment>
 
-    <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
-    <ion-toolbar class="listing-search">
-      <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
-    </ion-toolbar>
+    
     <p text-center *ngIf='!!PostingsResp && PostingsResp.length == 0'> {{showText}}</p>
-    <ion-card *ngFor="let item of PostingsResp; let i = index">
+    <ion-card *ngFor="let item of PostingsResp; let i = index" class="list-card">
       <p text-center *ngIf='item?.records === 0'> No listing to show</p>
       <ion-card-content *ngIf='item?.records === undefined'>
         <ion-grid>
           <ion-row class='listing-item'>
+            <h1>{{item.title}}</h1>
             <ion-col class='info' size="7">
-              <h1>{{item.title}}</h1>
               <p>{{item.terms}}</p>
               <p><ion-label> Property Type - </ion-label>{{item.type}}</p>
               <p>

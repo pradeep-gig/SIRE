@@ -1,11 +1,22 @@
-<ion-content class="landing" padding>
-<div text-center>
-		<img src="assets/images/logo-circle.png" />
-</div>
+<ion-content>
+	<div class="landing">
+		<div text-center class="landing logo">
+				<img src="assets/images/logo.png" style="padding-left: 34px;" />
+		</div>
+		<div text-center padding>
+				<h2>A Simple Realty Solution</h2>
+		</div>
+		<div text-center padding>
+		<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light"  routerLink="/register" >New Registeration</ion-button></div>
+		<div text-center padding>
+		<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light" routerLink="/login">Existing User Login</ion-button>
+		</div>
+
+		<div text-center padding>
+				<h2 style="font-size:17px;">Total Registrations -{{userCnt}} </h2>
+		</div>
+	</div>
 </ion-content>
-<ion-footer text-center padding>
-
-	<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light" routerLink="/login">Login</ion-button>
-	<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light"  routerLink="/register" >Register</ion-button>
-
+<ion-footer text-center padding style="padding: 7px; background: #fd9959; margin: 0;">
+	<h5 style="font-size: 11px; margin: 0; padding: 0; font-weight: 300;">Developed and Maintained by iSoftMinds</h5>
 </ion-footer>
