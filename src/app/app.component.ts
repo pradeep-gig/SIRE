@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private menu: MenuController
+    private menu: MenuController, private router: Router
   ) {
     this.initializeApp();
   }
@@ -28,6 +29,11 @@ export class AppComponent {
     this.menu.close()
   }
 
+  logout() {
+    sessionStorage.removeItem("userdata");
+    this.close();
+    this.router.navigate(['/login']);
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {
