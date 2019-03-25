@@ -44,7 +44,7 @@ export class CreatePostPage implements OnInit {
       facing: ['', Validators.compose([])],
       landmark: ['', Validators.compose([])],
       budget: ['', Validators.compose([Validators.required])],
-      contacts: this.formBuilder.array([this.createContacts(this.userInfo['phone'])]),
+      contact: [this.userInfo['phone'], Validators.compose([Validators.required])],//this.formBuilder.array([this.createContacts(this.userInfo['phone'])]),
       comment: ['', Validators.compose([])],
     });
   }
@@ -69,14 +69,6 @@ export class CreatePostPage implements OnInit {
     
     for (var propName in this.postCreateObj) { 
       if (this.postCreateObj[propName] == "") {
-        delete this.postCreateObj[propName];
-      }
-      if (propName == "contacts") {
-        let contact="";
-        for (let obj of this.postCreateObj[propName]) {
-          contact += (contact === "") ? obj.contact : ',' + obj.contact;
-        }
-        this.postCreateObj['contact'] = contact;
         delete this.postCreateObj[propName];
       }
     }

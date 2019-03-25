@@ -49,7 +49,7 @@ export class PostViewPage implements OnInit {
     });
 
 
-    this.displayLabel = {title: 'Title', typeofpost: 'Type of Post', location: 'Property Location', propertyarea:'Property Area', terms:'Terms', condition:'Property Condition',  type:'Property Type', area:'Area', dimension:'Dimension', facing:'Facing', landmark:'Landmark', budget:'Budget', contact:'Contact Number', comment:'Comments'};
+    this.displayLabel = {post_date: 'Posted Date', title: 'Title', typeofpost: 'Type of Post', location: 'Property Location', propertyarea:'Property Area', terms:'Terms', condition:'Property Condition',  type:'Property Type', area:'Area', dimension:'Dimension', facing:'Facing', landmark:'Landmark', budget:'Budget', contact:'Contact Number', comment:'Comments'};
   }
 
 }

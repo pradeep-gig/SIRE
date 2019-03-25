@@ -63,10 +63,9 @@ export class EditPostPage implements OnInit {
       facing: [this.postData.facing,Validators.compose([])],
       landmark: [this.postData.landmark,Validators.compose([])],
       budget: [this.postData.budget,Validators.compose([Validators.required])],
-      contacts: this.formBuilder.array([]),
+      contact: [this.postData.contact,Validators.compose([Validators.required])],
       comment: [this.postData.comment,Validators.compose([])],
     });
-    this.addContactValues(this.postData.contact);
   }
 
   addContactValues(contacts){
