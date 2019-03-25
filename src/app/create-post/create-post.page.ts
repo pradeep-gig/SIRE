@@ -19,7 +19,7 @@ export class CreatePostPage implements OnInit {
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
  
   ngOnInit() {
-    this.logoPath = '../../assets/images/logo-create.png';
+    this.logoPath = '../../assets/images/logo.png';
     this.userInfo = this.apiService.getSessionData();
     console.log(this.userInfo);
     this.apiService.getStates().subscribe(res => {
