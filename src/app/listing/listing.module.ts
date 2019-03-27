@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ListingPage } from './listing.page';
 import { Search } from '../pipes/search';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
+  providers: [SocialSharing],
   declarations: [ListingPage,Search]
 })
 export class ListingPageModule {}

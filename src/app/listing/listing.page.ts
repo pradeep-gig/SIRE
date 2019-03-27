@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {interval} from "rxjs";
 import { IonInfiniteScroll } from '@ionic/angular';
 // import { MenuController } from '@ionic/angular';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-listing',
@@ -18,8 +19,11 @@ export class ListingPage implements OnInit {
   segmentType: string;
   searchInput: string = "";
   offsetVal = 0;
-  showText = "Loading posts..."
-  constructor( private apiService: ApiService, private router: Router) {
+  showText = "Loading posts...";
+  text = 'Check out the Ionic Academy!';
+  url = 'https://ionicacademy.com';
+
+  constructor( private apiService: ApiService, private router: Router, private socialSharing: SocialSharing) {
     this.segmentType = "availablity";
     this.Postings =[];
    }
@@ -33,6 +37,15 @@ export class ListingPage implements OnInit {
     this.PostingsResp = [];
     this.apiService.showLoading();
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+  }
+
+  async shareWhatsApp() {
+    // Text + Image or URL works
+    this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
+      // Success
+    }).catch((e) => {
+      // Error!
+    });
   }
 
   search(e){
