@@ -28,6 +28,10 @@ export class ApiService {
     return this.http.get(this.restBaseUrl+"get_total_users");
   }
 
+  termsconditions(){
+    return this.http.get(this.restBaseUrl+"terms_condition");
+  }
+
   getSinglePost(id){
     return this.http.get(this.restBaseUrl+"get_single_post&id="+id);
   }

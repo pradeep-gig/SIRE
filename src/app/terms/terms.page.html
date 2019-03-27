@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title  style="background:#fe914c; padding:0;">
+      <div class='header-logo'>
+          <ion-img class='logo-img' [src]="logoPath" style="background: #fff; width: 100%; height: 70px; border-radius: 0 0 20px 20px;
+    padding: 0;   box-shadow: 0px 3px 6px 0 #ccc;"></ion-img>
+      </div>
+      <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
+          <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
+          <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
+          SIRE 
+          <ion-icon name="notifications" float-right style=" padding-right:10px"></ion-icon>
+      </h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h1>{{termsconditions.post_title}}</h1>
+
+    <div [innerHTML]="termsconditions.post_content"></div>
+
+</ion-content>
