@@ -1,8 +1,8 @@
-import { Component, OnInit, Pipe,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 import { ApiService } from '../services/api/api.service';
 import { Router } from '@angular/router';
-import {DomSanitizationService} from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-terms',
@@ -22,13 +22,3 @@ termsconditions = {};
 
 }
 
-@Pipe({name: 'safeHtml'})
-export class Safe {
-  constructor(private sanitizer:DomSanitizer){}
-
-  transform(value: any, args?: any): any {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-    // return this.sanitizer.bypassSecurityTrustStyle(style);
-    // return this.sanitizer.bypassSecurityTrustXxx(style); - see docs
-  }
-}

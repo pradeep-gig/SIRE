@@ -44,6 +44,10 @@ export class ApiService {
     return this.http.post(this.restBaseUrl+url , data, this.Options);
   }
 
+  sendmail(data){
+    return this.http.post(this.restBaseUrl+'sendmail' , data, this.Options);
+  }
+
   checkConnectivity(){
     this.showToast('Please check your connectivity or might be temporary down time', false, '', 'bottom', 2000);
   }
