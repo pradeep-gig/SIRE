@@ -13,14 +13,14 @@ export class MessagePage implements OnInit {
 
   logoPath: string;
   messageForm: FormGroup;
- 	messageFormReq = {};
-userInfo= {};
+  messageFormReq = {};
+  userInfo= {};
 
-  constructor(private formBuilder: FormBuilder,
-    private apiService: ApiService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.userInfo = this.apiService.getSessionData();
+    console.log(this.userInfo);
     this.logoPath = '../../assets/images/logo.png';
 
       this.messageForm = this.formBuilder.group({

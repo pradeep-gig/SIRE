@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class TermsPage implements OnInit {
 termsconditions = {};
+ logoPath: string;
 
   constructor(private apiService: ApiService) { this.apiService.termsconditions().subscribe(res => {
   		this.termsconditions=res['data'];
@@ -18,6 +19,7 @@ termsconditions = {};
   }
 
   ngOnInit() {
+   this.logoPath = '../../assets/images/logo.png';
   }
 
 }
