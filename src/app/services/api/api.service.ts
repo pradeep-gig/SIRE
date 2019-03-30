@@ -28,6 +28,10 @@ export class ApiService {
     return this.http.get(this.restBaseUrl+"get_total_users");
   }
 
+  termsconditions(){
+    return this.http.get(this.restBaseUrl+"terms_condition");
+  }
+
   getSinglePost(id){
     return this.http.get(this.restBaseUrl+"get_single_post&id="+id);
   }
@@ -38,6 +42,10 @@ export class ApiService {
 
   createPost(url: string, data){
     return this.http.post(this.restBaseUrl+url , data, this.Options);
+  }
+
+  sendmail(data){
+    return this.http.post(this.restBaseUrl+'sendmail' , data, this.Options);
   }
 
   checkConnectivity(){

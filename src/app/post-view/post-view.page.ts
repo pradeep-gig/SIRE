@@ -20,7 +20,7 @@ export class PostViewPage implements OnInit {
   }
 
   ngOnInit() {
-    this.logoPath = '../../assets/images/logo.png';
+ this.logoPath = '../../assets/images/logo-create.png';
 
     this.apiService.showLoading();
     this.apiService.fetchPost(this.activatedRoute.snapshot.paramMap.get('id')).subscribe(res => {

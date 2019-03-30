@@ -27,7 +27,7 @@ export class RegisterPage implements OnInit {
     this.sendOtp = false;
     this.showOtp = true;
     this.isRegister = false;
-    this.logoPath = '../../assets/images/logo.png';
+  this.logoPath = '../../assets/images/logo-create.png';
 
     this.apiService.getStates().subscribe(res => {
       this.stateCityList = res;

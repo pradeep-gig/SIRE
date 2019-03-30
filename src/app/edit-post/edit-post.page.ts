@@ -45,7 +45,7 @@ export class EditPostPage implements OnInit {
     });
     
 
-    this.logoPath = '../../assets/images/logo.png';
+   this.logoPath = '../../assets/images/logo-create.png';
 
     
   }
