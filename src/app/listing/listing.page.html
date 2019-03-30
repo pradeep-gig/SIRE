@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-    <ion-button class='add-post' routerLink="/create-post" color="white" shape="round" style="size=10px;"> <ion-icon name="add"></ion-icon> </ion-button>
+    <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round" style="size=10px;"> <ion-icon name="add"></ion-icon> </ion-button>
     <ion-toolbar class="listing-search">
       <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
