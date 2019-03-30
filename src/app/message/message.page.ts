@@ -15,6 +15,7 @@ export class MessagePage implements OnInit {
   messageForm: FormGroup;
   messageFormReq = {};
   userInfo= {};
+  title = 'Send Message';
 
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 

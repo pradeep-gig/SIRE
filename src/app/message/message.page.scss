@@ -1,62 +1,9 @@
-.header{
-    background:fe914c;
-    background-repeat: no-repeat;
-    background-size:100% auto;
-    background-position:0 30px;
-    position: relative;
-}
-ion-title{
-    padding: 0;
-}
-.logo-img {
-    width: 100px;
-    position: relative;
-
-}
-.header-title {
-    width: 100%;
-    margin: 0;
-    color: #fff;
-    position: absolute;
-    bottom: 2px;
-    ion-icon{
-        position: absolute;
-        bottom:0;
-        left:10px;
-    }   
-    h1{
-        margin: 0;
-        font-size:16px;
-    }
-}
-
-.reg-btn {
-    width: 100%;
-    position: relative;
-    top: 20px;
-    
-    > button{
-        background-color: rgb(255,145,76);
-    }
-}
-
-.reg {
-    color: black;
-    position: relative;
-    top: 25px;
-    width: 100%;
-    cursor: pointer;
-}
-
-.resend {
-    color: black;
-    font-size: 18px;
-    margin: 5px;
-    width: 100%;
-    cursor: pointer;
-}
-.logo-img[_ngcontent-c0] {
-    width: 110% !important;
-    position: relative;
-    margin: -19px -50px;
-}
+div {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .logo-img[_ngcontent-c0] {
+      width: 110% !important;
+      position: relative;
+      margin: -19px -50px;
+  }
