@@ -48,7 +48,7 @@
             </ion-col>
             <ion-col class='price' size="5" float-right text-right>
               <h2> {{item.budget | currency:'INR'}}</h2>
-              <p> <a (click)='shareWhatsApp()'><ion-icon name="logo-whatsapp"></ion-icon></a> <a class='view-details' (click)='viewDetails(item)'>View Details</a></p>
+              <p> <a href='javascript:void(null)' (click)='share(item.id)'> <ion-icon ios="ios-share" md="md-share"></ion-icon> Share</a> <a class='view-details' (click)='viewDetails(item)'>View Details</a></p>
             </ion-col>
           </ion-row>
           <ion-row>

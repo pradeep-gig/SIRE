@@ -20,7 +20,7 @@ export class ListingPage implements OnInit {
   searchInput: string = "";
   offsetVal = 0;
   showText = "Loading posts...";
-  text = 'Check out the Ionic Academy!';
+  text = 'Check this out! ';
   url = 'https://ionicacademy.com';
 
   constructor( private apiService: ApiService, private router: Router, private socialSharing: SocialSharing) {
@@ -39,12 +39,15 @@ export class ListingPage implements OnInit {
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
   }
 
-  async shareWhatsApp() {
+  async share(id) {
     // Text + Image or URL works
-    this.socialSharing.shareViaWhatsApp(this.text, null, this.url).then(() => {
-      // Success
+    let urlLink = "sireapp://sireapp.com/post?id="+id;
+    urlLink = "https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=app_redirect&url="+btoa(urlLink);
+    
+    this.socialSharing.share(this.text, 'SI RE', null, urlLink).then(() => {
+      this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
     }).catch((e) => {
-      // Error!
+      this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
     });
   }
 
