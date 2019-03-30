@@ -21,7 +21,7 @@ export class MessagePage implements OnInit {
   ngOnInit() {
     this.userInfo = this.apiService.getSessionData();
     console.log(this.userInfo);
-    this.logoPath = '../../assets/images/logo.png';
+    this.logoPath = '../../assets/images/logo-create.png';
 
       this.messageForm = this.formBuilder.group({
       phone: [this.userInfo['phone'], Validators.compose([Validators.required])],

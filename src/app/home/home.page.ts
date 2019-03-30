@@ -25,7 +25,7 @@ export class HomePage {
   }
 
   public async ngOnInit() {
-    this.logoPath = '../../assets/images/logo.png';
+    this.logoPath = '../../assets/images/logo-create.png';
     this.view = 'myPosting';
     this.userData = JSON.parse(sessionStorage.getItem('userdata'));
     // this.apiService.getUserpost(this.userData.userId).subscribe(res => {

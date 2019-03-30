@@ -33,7 +33,7 @@ export class ListingPage implements OnInit {
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
    }
    public async ngOnInit() {
-    this.logoPath = '../../assets/images/logo.png';
+    this.logoPath = '../../assets/images/logo-create.png';
     this.PostingsResp = [];
     this.apiService.showLoading();
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");

@@ -1,8 +1,8 @@
-.logo-img {
+/* .logo-img {
     width: 100px;
     position: relative;
     margin: auto auto;
-}
+} */
 .header-title {
     width: 100%;
     margin: 0;
@@ -57,4 +57,9 @@
             }
         }
     }
+}
+.logo-img[_ngcontent-c0] {
+    width: 110% !important;
+    position: relative;
+    margin: -19px -50px;
 }

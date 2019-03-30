@@ -1,5 +1,4 @@
 .header{
-    background-image: url('/assets/images/logo-create.png');
     background:fe914c;
     background-repeat: no-repeat;
     background-size:100% auto;
@@ -55,4 +54,9 @@ ion-title{
     margin: 5px;
     width: 100%;
     cursor: pointer;
+}
+.logo-img[_ngcontent-c0] {
+    width: 110% !important;
+    position: relative;
+    margin: -19px -50px;
 }

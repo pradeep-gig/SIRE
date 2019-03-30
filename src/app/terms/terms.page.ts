@@ -19,7 +19,7 @@ termsconditions = {};
   }
 
   ngOnInit() {
-   this.logoPath = '../../assets/images/logo.png';
+ this.logoPath = '../../assets/images/logo-create.png';
   }
 
 }
