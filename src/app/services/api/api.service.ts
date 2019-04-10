@@ -85,11 +85,11 @@ export class ApiService {
   }
 
   setSessionData(data){
-    sessionStorage.setItem('userdata', JSON.stringify(data));
+    localStorage.setItem('userdata', JSON.stringify(data));
   }
 
   getSessionData(){
-    return JSON.parse(sessionStorage.getItem('userdata'));
+    return JSON.parse(localStorage.getItem('userdata'));
   }
 
   async showToast(msg, closeBtn, closeText, postion, duration){

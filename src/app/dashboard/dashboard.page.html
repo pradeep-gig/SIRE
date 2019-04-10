@@ -16,14 +16,18 @@
 
 <ion-content>
 	
-	<div text-center padding>
-		<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light"  routerLink="/create-post" >POST</ion-button></div>
-		<div text-center padding>
-		<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light" routerLink="/login">SEARCH</ion-button>
-		</div>
-
-		<div text-center padding>
-		<ion-button type='button' class='login-btn' shape="round" fill="solid" color="light" routerLink="/login">DELETE</ion-button>
-		</div>
+	<div padding>
+      <button class='option-btn' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button> <span class='option-title' routerLink="/create-post"> - Add post </span>
+  </div>
+  <div padding>
+      <button class='option-btn' color="warning" shape="round" (click)='enableSearch()'>  <ion-icon ios="ios-search" md="md-search"></ion-icon> </button> <span class='option-title' (click)='enableSearch()'> - Search post </span>
+      <ion-toolbar class="listing-search" *ngIf='showSearch'>
+        <!-- <div text-center><ion-button color="primary" ng-click="()">Available</ion-button> <ion-button color="light">Requirement</ion-button></div> -->
+        <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
+      </ion-toolbar>
+  </div>
+  <div padding>
+      <button class='option-btn' routerLink="/home" color="warning" shape="round"> <ion-icon ios="ios-trash" md="md-trash"></ion-icon> </button> <span class='option-title' routerLink="/home"> - Delete post </span>
+	</div>
 	
 </ion-content>

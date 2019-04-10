@@ -38,8 +38,8 @@
 
   <ion-row margin-top *ngFor='let item of displayInfo; let i = index' [hidden]="item.name == 'title'">
       <ion-item>
-          <ion-label> {{displayLabel[item.name]}} </ion-label>
-          <ion-label> {{item.value}} </ion-label>
+          <ion-label size="5"> <strong>{{displayLabel[item.name]}}</strong> </ion-label>
+          <label class='label-value'> {{item.value}} </label>
       </ion-item>
   </ion-row>
 

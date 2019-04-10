@@ -78,7 +78,9 @@ export class CreatePostPage implements OnInit {
       this.apiService.hideLoading();
       if(!!res['status'] && res['status'] == "Success"){
         // this.apiService.showToast("Posting done", true, "close", "bottom", 1000);
-        localStorage.setItem('postInfo', JSON.stringify(this.postCreateObj));
+        var postDetails = Object.assign({}, this.postCreateObj);
+        postDetails['id'] = res['data'];
+        localStorage.setItem('postInfo', JSON.stringify(postDetails));
         this.router.navigate(['/listing']);
       }else{
         this.apiService.showToast("Posting failed", true, "close", "bottom", 1000);

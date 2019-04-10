@@ -30,18 +30,28 @@ export class ListingPage implements OnInit {
    ionViewDidEnter(){
     this.segmentType = "availablity";
     this.Postings =[];
-    this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+    
     var postInfo = localStorage.getItem('postInfo');
     if(postInfo){
       this.share('other', JSON.parse(postInfo));
       localStorage.removeItem('postInfo');
     }
+    var searchInfo = localStorage.getItem('search');
+    if(searchInfo){
+      this.offsetVal = 0;
+      this.searchInput = searchInfo;
+      this.apiService.showLoading();
+      this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
+      localStorage.removeItem('search');
+    }else {
+      this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+    }
    }
    public async ngOnInit() {
     this.logoPath = '../../assets/images/logo-create.png';
     this.PostingsResp = [];
-    this.apiService.showLoading();
-    this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+   // this.apiService.showLoading();
+   //  this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
   }
 
   async share(type, item) {
