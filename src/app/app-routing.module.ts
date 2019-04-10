@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'edit-post/:id', canActivate: [AuthGuard],loadChildren: './edit-post/edit-post.module#EditPostPageModule' },
   { path: 'terms', canActivate: [AuthGuard],loadChildren: './terms/terms.module#TermsPageModule' },
   { path: 'message', canActivate: [AuthGuard],loadChildren: './message/message.module#MessagePageModule' },
+  { path: 'dashboard', canActivate: [AuthGuard], loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
 
 ];
 
