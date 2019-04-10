@@ -44,7 +44,7 @@ export class ListingPage implements OnInit {
     let urlLink = "sireapp://sireapp.com/post?id="+id;
     urlLink = "https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=app_redirect&url="+btoa(urlLink);
     
-    this.socialSharing.share(this.text, 'SI RE', null, urlLink).then(() => {
+    this.socialSharing.share(this.text, 'SiRe', null, urlLink).then(() => {
       this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
     }).catch((e) => {
       this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
