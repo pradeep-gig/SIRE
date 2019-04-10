@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'landing', loadChildren: './landing/landing.module#LandingPageModule' },
   { path: 'edit-post/:id', loadChildren: './edit-post/edit-post.module#EditPostPageModule' },  { path: 'terms', loadChildren: './terms/terms.module#TermsPageModule' },
   { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
 
 ];
 
