@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="background:#fe914c;">
     <ion-title  style="background:#fe914c; padding:0;">
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-    <ion-button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </ion-button>
+    <button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button>
     <ion-toolbar class="listing-search">
       <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
@@ -47,7 +47,12 @@
             </ion-col>
             <ion-col class='price' size="5" float-right text-right>
               <h2> {{item.budget | currency:'INR'}}</h2>
-              <p> <a href='javascript:void(null)' (click)='share(item.id)'> <ion-icon ios="ios-share" md="md-share"></ion-icon> Share</a> <a class='view-details' (click)='viewDetails(item)'>View Details</a></p>
+              <ul class='share-ul'>
+                <!-- <li><a class='whatsapp' href='javascript:void(null)' (click)='share("whatsapp",item)'>  <ion-icon ios="logo-whatsapp" md="logo-whatsapp"></ion-icon> </a></li> -->
+                <li><a href='javascript:void(null)' (click)='share("other",item)'>     <ion-icon ios="ios-share" md="md-share"></ion-icon> </a></li>
+              </ul>
+                
+                <p><a class='view-details' (click)='viewDetails(item)'>View Details</a></p>
             </ion-col>
           </ion-row>
           <ion-row>

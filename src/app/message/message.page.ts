@@ -36,7 +36,7 @@ export class MessagePage implements OnInit {
  
     sendmessage(){
     if(this.messageForm.valid){
-      
+      this.apiService.showLoading();
       this.messageFormReq = Object.assign({}, this.messageForm.value);
       this.apiService.sendmail(this.messageFormReq).subscribe(res => {
         this.apiService.hideLoading();

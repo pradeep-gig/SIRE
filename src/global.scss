@@ -124,3 +124,13 @@ input.text { background-color:transparent }
   cursor: pointer;
 }
 .inner-scroll{ padding:0;}
+.ion-color-warning {
+  --ion-color-base: #fe914c !important;
+}
+ion-row{
+  ion-native {
+    .item-native {
+      background-color: #fe914c !important;
+    }
+  }
+} 

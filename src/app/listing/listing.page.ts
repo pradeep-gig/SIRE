@@ -31,6 +31,11 @@ export class ListingPage implements OnInit {
     this.segmentType = "availablity";
     this.Postings =[];
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+    var postInfo = localStorage.getItem('postInfo');
+    if(postInfo){
+      this.share('other', JSON.parse(postInfo));
+      localStorage.removeItem('postInfo');
+    }
    }
    public async ngOnInit() {
     this.logoPath = '../../assets/images/logo-create.png';
@@ -39,16 +44,49 @@ export class ListingPage implements OnInit {
     this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
   }
 
-  async share(id) {
+  async share(type, item) {
     // Text + Image or URL works
-    let urlLink = "sireapp://sireapp.com/post?id="+id;
+    let urlLink = "sireapp://sireapp.com/post?id="+item.id;
     urlLink = "https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=app_redirect&url="+btoa(urlLink);
     
-    this.socialSharing.share(this.text, 'SiRe', null, urlLink).then(() => {
-      this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
-    }).catch((e) => {
-      this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
-    });
+
+    if(type == 'whatsapp'){
+      let msg = 'Check this out! '+ "\r\n\r\n" +'*Title* :' + item.title + "\r\n\r\n" + '*Property Type* :' + item.type + "\r\n\r\n" + '*Property Location* :' + item.location + "\r\n\r\n" + '*Budget* :' + item.budget + "\r\n\r\n" + '*Terms* :' + item.terms + "\r\n\r\n" + '*Area* :' + item.area + "\r\n\r\n"+ '*Dimension* :' + item.dimension + "\r\n\r\n"+ '*Facing* :' + item.facing + "\r\n\r\n"+ '*Contact number* :' + item.contact + "\r\n\r\n";
+      encodeURIComponent(msg);
+      this.socialSharing.shareViaWhatsApp(msg, null, urlLink).then(() => {
+        this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
+      }).catch((e) => {
+        this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
+      });
+    }else if(type == 'fb'){
+      let msg = 'Hi,';
+      let u = 'https://ionicframework.com/';
+      //let msg = 'Check this out! '+ "<br><br>" +' <strong>Title</strong> :' + item.title + "<br><br>" + '<strong>Type</strong> :' + item.type + "<br><br>" + '<strong>Location</strong> :' + item.location + "<br><br>" + '<strong>budget</strong> :' + item.budget + "<br><br>" + urlLink;
+      // encodeURIComponent(msg);
+      this.socialSharing.shareViaFacebook(msg, null, u).then(() => {
+        this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
+      }).catch((e) => {
+        this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
+      });
+    }else if(type == 'tw'){
+      // let msg = 'Check this out! '+ "<br><br>" +' *Title</strong> :' + item.title + "<br><br>" + '<strong>Type</strong> :' + item.type + "<br><br>" + '<strong>Location</strong> :' + item.location + "<br><br>" + '<strong>budget</strong> :' + item.budget + "<br><br>"+ urlLink ;
+      // encodeURIComponent(msg);
+      let msg = 'Hi,';
+      let u = 'https://ionicframework.com/';
+      this.socialSharing.shareViaTwitter(msg, null, u).then(() => {
+        this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
+      }).catch((e) => {
+        this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
+      });
+    }else if(type == 'other'){
+      let msg = 'Check this out! '+ "\r\n\r\n" +'*Title* :' + item.title + "\r\n\r\n" + '*Property Type* :' + item.type + "\r\n\r\n" + '*Property Location* :' + item.location + "\r\n\r\n" + '*Budget* :' + item.budget + "\r\n\r\n" + '*Terms* :' + item.terms + "\r\n\r\n" + '*Area* :' + item.area + "\r\n\r\n"+ '*Dimension* :' + item.dimension + "\r\n\r\n"+ '*Facing* :' + item.facing + "\r\n\r\n"+ '*Contact number* :' + item.contact + "\r\n\r\n";
+      encodeURIComponent(msg);
+      this.socialSharing.share(msg, 'SI RE', null, urlLink).then(() => {
+        // this.apiService.showToast("Shared successfully", false, '', 'bottom', 2000); 
+      }).catch((e) => {
+        this.apiService.showToast("failed to share : " + e, false, '', 'bottom', 2000);
+      });
+    }
   }
 
   search(e){

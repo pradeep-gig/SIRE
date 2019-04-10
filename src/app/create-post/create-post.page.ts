@@ -73,10 +73,12 @@ export class CreatePostPage implements OnInit {
       }
     }
     this.apiService.showLoading();
+    var that = this;
     this.apiService.createPost("add_update_post",this.postCreateObj).subscribe(res => {
       this.apiService.hideLoading();
       if(!!res['status'] && res['status'] == "Success"){
         // this.apiService.showToast("Posting done", true, "close", "bottom", 1000);
+        localStorage.setItem('postInfo', JSON.stringify(this.postCreateObj));
         this.router.navigate(['/listing']);
       }else{
         this.apiService.showToast("Posting failed", true, "close", "bottom", 1000);

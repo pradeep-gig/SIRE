@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./terms.page.scss'],
 })
 export class TermsPage implements OnInit {
-termsconditions = {};
- logoPath: string;
+  termsconditions = {'post_title': '', 'post_content': ''};
+  logoPath: string;
 
   constructor(private apiService: ApiService) { this.apiService.termsconditions().subscribe(res => {
   		this.termsconditions=res['data'];
