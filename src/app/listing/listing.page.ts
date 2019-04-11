@@ -17,7 +17,7 @@ export class ListingPage implements OnInit {
   Postings: Array<any>;
   showNext: boolean = false;
   segmentType: string;
-  searchInput: string = "";
+  searchInput = {'typeofpost': '', 'location': '', 'type': ''};
   offsetVal = 0;
   showText = "Loading posts...";
   text = 'Check this out! ';
@@ -39,7 +39,8 @@ export class ListingPage implements OnInit {
     var searchInfo = localStorage.getItem('search');
     if(searchInfo){
       this.offsetVal = 0;
-      this.searchInput = searchInfo;
+      this.searchInput = JSON.parse(searchInfo);
+      
       this.apiService.showLoading();
       this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
       localStorage.removeItem('search');
@@ -159,13 +160,13 @@ export class ListingPage implements OnInit {
     this.Postings = this.PostingsResp.filter((postingData) => (postingData.typeofpost === this.segmentType));
   }
 
-  onSegmentChanged(value: string) {
-    this.searchInput = '';
-    this.offsetVal = 0;
-    this.segmentType = value;
-    this.apiService.showLoading();
-    this.fetchPosting(this.offsetVal, this.searchInput, value);
-  }
+  // onSegmentChanged(value: string) {
+  //   this.searchInput = '';
+  //   this.offsetVal = 0;
+  //   this.segmentType = value;
+  //   this.apiService.showLoading();
+  //   this.fetchPosting(this.offsetVal, this.searchInput, value);
+  // }
 
   // openMenu() {
   //   this.menu.enable(true, 'sideBarMenu');

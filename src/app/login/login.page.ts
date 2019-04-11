@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
   login(){
     if(this.loginForm.valid){
       if(this.loginForm.value.otp == this.otp){
-        this.router.navigate(['/listing']);
+        this.router.navigate(['/dashboard']);
       }
       else{
         this.apiService.showToast("Invalid OTP please try again", false, '', 'bottom', 2000);

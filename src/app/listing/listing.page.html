@@ -17,9 +17,9 @@
 <ion-content padding>
 
     <button class='add-post' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button>
-    <ion-toolbar class="listing-search">
+    <!-- <ion-toolbar class="listing-search">
       <ion-searchbar showCancelButton  [(ngModel)]="searchInput" (change)="search($event)"  (ionCancel)="onCancel($event)"></ion-searchbar>
-    </ion-toolbar>
+    </ion-toolbar> -->
 
     <ion-segment [(ngModel)]="segmentType" (ionChange)="onSegmentChanged($event.target.value)">
         <ion-segment-button  value="availablity">

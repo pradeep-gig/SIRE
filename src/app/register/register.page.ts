@@ -89,7 +89,7 @@ export class RegisterPage implements OnInit {
         if(!!res['status'] && res['status'] == "Success"){
           this.apiService.showToast("Registered sucessfully, Please login. ", true, "close", "bottom", 1000);
           this.registerFormReq['userId'] = res['id'] ;
-          sessionStorage.setItem('userdata', JSON.stringify(this.registerFormReq));
+          localStorage.setItem('userdata', JSON.stringify(this.registerFormReq));
           this.router.navigate(['/login']);
         }else{
           this.apiService.showToast((!!res['msg'] ) ? res['msg'] : "Registration failed", true, "close", "bottom", 1000);

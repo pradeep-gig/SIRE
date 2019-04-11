@@ -21,9 +21,7 @@ export class CreatePostPage implements OnInit {
   ngOnInit() {
     this.logoPath = '../../assets/images/logo-create.png';
     this.userInfo = this.apiService.getSessionData();
-    console.log(this.userInfo);
     this.apiService.getStates().subscribe(res => {
-      console.log(res);
       for(let state in res){
         if(state == 'Tamil Nadu'){
           this.state = res[state];

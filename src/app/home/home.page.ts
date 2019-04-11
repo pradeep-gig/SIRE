@@ -27,14 +27,19 @@ export class HomePage {
   public async ngOnInit() {
     this.logoPath = '../../assets/images/logo-create.png';
     this.view = 'myPosting';
-    this.userData = JSON.parse(sessionStorage.getItem('userdata'));
+    this.userData = JSON.parse(localStorage.getItem('userdata'));
+    if(this.userData){
+      this.getPost();
+    }else{
+      this.router.navigate(['/landing']);
+    }
     // this.apiService.getUserpost(this.userData.userId).subscribe(res => {
     //   console.log(res)
     // }, error => {
     //   console.log(error);
     // });
 
-    this.getPost();
+    
   }
 
   ionViewDidEnter(){
@@ -122,7 +127,7 @@ export class HomePage {
         this.apiService.hideLoading();
         if (!!res['status'] && res['status'] == "Success") {
           this.apiService.showToast("Updated sucessfully", true, "close", "bottom", 1000);
-          sessionStorage.setItem('userdata', JSON.stringify(updateFormReq));
+          localStorage.setItem('userdata', JSON.stringify(updateFormReq));
         } else {
           this.apiService.showToast("Failed to Update", true, "close", "bottom", 1000);
         }

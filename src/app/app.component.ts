@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   logout() {
-    sessionStorage.removeItem("userdata");
+    localStorage.removeItem("userdata");
     this.close();
     this.router.navigate(['/login']);
   }

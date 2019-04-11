@@ -21,7 +21,7 @@ export class ApiService {
   }
 
   getpost(offset, query, type){
-    return this.http.get(this.restBaseUrl+"post_list&start="+offset+"&search="+query+"&typeofpost="+type);
+    return this.http.get(this.restBaseUrl+"post_list&start="+offset+"&type="+query.type+"&location="+query.location+"&typeofpost="+query.typeofpost);
   }
 
   gettotaluser(){
