@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../services/api/api.service';
+import { FcmService } from '../services/fcm/fcm.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginPage implements OnInit {
   sendOtp: boolean;
   showOtp: boolean;
   otp: number;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService, private fcmService: FcmService) { 
     
   }
 
@@ -42,6 +43,9 @@ export class LoginPage implements OnInit {
   login(){
     if(this.loginForm.valid){
       if(this.loginForm.value.otp == this.otp){
+        let userInfo = this.apiService.getSessionData();
+        // console.log(userInfo.phone);
+        this.fcmService.getToken(userInfo.phone);
         this.router.navigate(['/dashboard']);
       }
       else{

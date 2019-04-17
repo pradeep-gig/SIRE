@@ -12,17 +12,35 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api/api.service';
 import { Deeplinks } from '@ionic-native/deeplinks/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { FcmService } from './services/fcm/fcm.service';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAd20TXypSh6jkQip_TT8opsfRYqKNe2wc",
+  authDomain: "sire-bb008.firebaseapp.com",
+  databaseURL: "https://sire-bb008.firebaseio.com",
+  projectId: "sire-bb008",
+  storageBucket: "sire-bb008.appspot.com",
+  messagingSenderId: "546992727737"
+};
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AngularFireModule, AngularFireModule.initializeApp(firebaseConfig)],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     ApiService,
-    Deeplinks
+    Deeplinks,
+    FcmService,
+    Firebase,
+    AngularFirestore,
+    FCM
   ],
   bootstrap: [AppComponent]
 })

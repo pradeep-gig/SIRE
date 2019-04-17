@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "546992727737",
+    "firebase_url": "https://sire-bb008.firebaseio.com",
+    "project_id": "sire-bb008",
+    "storage_bucket": "sire-bb008.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546992727737:android:c9952f0c6e5229c4",
+        "android_client_info": {
+          "package_name": "com.isoft.sire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546992727737-l0kbc1sqbrn5q9siaj56lgsaq53dt8u8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4Gqfg7vCcw2Lv8QWuFPy8B7nmoEMo0nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546992727737-l0kbc1sqbrn5q9siaj56lgsaq53dt8u8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

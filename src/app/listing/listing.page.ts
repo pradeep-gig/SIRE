@@ -28,7 +28,7 @@ export class ListingPage implements OnInit {
     this.Postings =[];
    }
    ionViewDidEnter(){
-    this.segmentType = "availablity";
+   
     this.Postings =[];
     
     var postInfo = localStorage.getItem('postInfo');
@@ -40,12 +40,14 @@ export class ListingPage implements OnInit {
     if(searchInfo){
       this.offsetVal = 0;
       this.searchInput = JSON.parse(searchInfo);
-      
+      this.segmentType = this.searchInput.typeofpost;
       this.apiService.showLoading();
-      this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
+      this.fetchPosting(this.offsetVal, this.searchInput);
       localStorage.removeItem('search');
     }else {
-      this.fetchPosting(this.offsetVal, this.searchInput, "availablity");
+      this.searchInput.typeofpost = 'availablity';
+      this.segmentType = "availablity";
+      this.fetchPosting(this.offsetVal, this.searchInput);
     }
    }
    public async ngOnInit() {
@@ -100,23 +102,10 @@ export class ListingPage implements OnInit {
     }
   }
 
-  search(e){
-    this.offsetVal = 0;
-    this.apiService.showLoading();
-    this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
-  }
-
-  onCancel(e){
-    const subscription = setTimeout(() => {
-      this.offsetVal = 0;
-      this.apiService.showLoading();
-      this.fetchPosting(this.offsetVal, this.searchInput, this.segmentType);
-    }, 500);
-  }
 
   doInfinite(infiniteScroll){
     this.offsetVal =+ 1;
-    this.apiService.getpost(this.offsetVal, this.searchInput, this.segmentType).subscribe(res => {
+    this.apiService.getpost(this.offsetVal, this.searchInput).subscribe(res => {
       infiniteScroll.target.complete();
       if(res['status'] == 'Success'){
         if(res['data'].length > 0){
@@ -132,10 +121,10 @@ export class ListingPage implements OnInit {
     });
   }
 
-  fetchPosting(offset, search, type){
+  fetchPosting(offset, search){
     this.PostingsResp = [];
     this.showText = 'Loading posts...';
-    this.apiService.getpost(offset, search, type).subscribe(res => {
+    this.apiService.getpost(offset, search).subscribe(res => {
       this.apiService.hideLoading();
       if(res['status'] == 'Success'){
         if(res['data'].length > 0){
@@ -160,13 +149,13 @@ export class ListingPage implements OnInit {
     this.Postings = this.PostingsResp.filter((postingData) => (postingData.typeofpost === this.segmentType));
   }
 
-  // onSegmentChanged(value: string) {
-  //   this.searchInput = '';
-  //   this.offsetVal = 0;
-  //   this.segmentType = value;
-  //   this.apiService.showLoading();
-  //   this.fetchPosting(this.offsetVal, this.searchInput, value);
-  // }
+  onSegmentChanged(value: string) {
+    this.offsetVal = 0;
+    this.segmentType = value;
+    this.apiService.showLoading();
+    this.searchInput.typeofpost = value;
+    this.fetchPosting(this.offsetVal, this.searchInput);
+  }
 
   // openMenu() {
   //   this.menu.enable(true, 'sideBarMenu');
