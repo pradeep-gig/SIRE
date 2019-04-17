@@ -133,4 +133,14 @@ ion-row{
       background-color: #fe914c !important;
     }
   }
-} 
+}
+
+*:active{
+  border:none;
+  outline:none;
+}
+
+*:focus{
+  border:none;
+  outline:none;
+}

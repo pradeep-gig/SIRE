@@ -57,7 +57,8 @@
                         </ion-col>
                         <ion-col class='price' size="5" float-right text-right>
                           <h2> {{item.budget | currency:'INR'}}</h2>
-                          <ion-icon class='edit-icon' name="create" (click)='editPost(item)' ></ion-icon>
+                    
+                    <a href='javascript:void(null)' (click)='share("other",item)'>     <ion-icon  class="share-icon" ios="ios-share" md="md-share"></ion-icon> </a><ion-icon class='edit-icon' name="create" (click)='editPost(item)' ></ion-icon>
                           <ion-icon class='delete-icon' name="trash" (click)='deletePost(item)'></ion-icon>
                         </ion-col>
                       </ion-row>
