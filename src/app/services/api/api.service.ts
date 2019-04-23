@@ -7,7 +7,7 @@ import { ToastController } from '@ionic/angular';
 @Injectable()
 export class ApiService {
 
-  restBaseUrl = 'https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=';
+  restBaseUrl = 'http://www.simpcondevelopers.com/sr/wp-admin/admin-ajax.php?action=';
   Options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded'

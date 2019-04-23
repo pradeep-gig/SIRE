@@ -146,3 +146,17 @@ ion-row{
   border:none;
   outline:none;
 }
+
+.notifications{
+  position: relative;
+
+}
+
+.notifications ion-badge{
+  position: absolute;
+    float: none !important;
+    top: -5px;
+    right: -7px;
+    color: #3a1a06;
+    background: transparent;
+}
