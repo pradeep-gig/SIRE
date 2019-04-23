@@ -16,6 +16,7 @@ export class ApiService {
 
   constructor(private http: HttpClient, public toastController: ToastController) { }
 
+
   getStates(){
     return this.http.get('../../../assets/json/stateAndCity.json');
   }
@@ -101,6 +102,18 @@ export class ApiService {
       closeButtonText: closeText
     });
     toast.present();
+  }
+
+  setToken(data){
+    return this.http.post(this.restBaseUrl+"update_token", data, this.Options);
+  }
+
+  fetchNotification(userId, start){
+    return this.http.get(this.restBaseUrl+"noti_list&user="+userId + "&start="+start);
+  }
+
+  ReadNotification(data){
+    return this.http.post(this.restBaseUrl+'read_noti', data, this.Options)
   }
 
   // private handleError<T> (operation = 'operation', result?: T) {

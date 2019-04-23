@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar style="background:#fe914c;">
+    <ion-title  style="background:#fe914c; padding:0;">
+      <div class='header-logo'>
+          <ion-img class='logo-img' [src]="logoPath"></ion-img>
+      </div>
+      <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
+          <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
+          <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
+          Notification 
+      </h1>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <p text-center *ngIf='!showList'> {{showText}}</p>
+  <ion-card *ngFor="let item of NotificationResp; let i = index" class="list-card" (click)='viewPost(item)'>
+    <ion-card-content>
+      <ion-grid class='notifi-list' [ngClass]="{'unread': item.read_noti == 0}">
+        <ion-row class='listing-item'>
+          <h1>{{item.typeofpost}} for {{item.type}}</h1>
+          <ion-col class='info' size="10">
+            <p>{{item.title}}</p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <small>Posted on: {{item.post_date | date:'dd/MM/yyyy HH:mm'}}</small>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

@@ -8,7 +8,7 @@
             <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
             <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
             Send Message
-            <ion-icon name="notifications" float-right style=" padding-right:10px"></ion-icon>
+            <ion-badge float-right color="warning" style=" padding-right:10px" *ngIf='showCount'>{{count}}</ion-badge><ion-icon name="notifications" float-right routerLink="/notification"></ion-icon>
         </h1>
       </ion-title>
     </ion-toolbar>

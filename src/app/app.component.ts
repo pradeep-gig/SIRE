@@ -13,6 +13,7 @@ import { FcmService } from './services/fcm/fcm.service';
 import { tap } from 'rxjs/operators';
 import { FCM } from '@ionic-native/fcm/ngx';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -30,7 +31,7 @@ export class AppComponent {
     this.initializeApp();
     
   }
-
+  
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
@@ -49,16 +50,16 @@ export class AppComponent {
 
   initializeApp() {
 
-    this.fcmService.listenToNotifications().subscribe(data => {
-      alert(data);
-      if (data.wasTapped) {
-        alert('Received in background');
-        this.router.navigate(['/listing']);
-      } else {
-        alert('Received in foreground');
-        this.router.navigate(['/listing']);
-      }
-    });
+    // this.fcmService.listenToNotifications().subscribe(data => {
+    //   alert(data);
+    //   if (data.wasTapped) {
+    //     alert('Received in background');
+    //     this.router.navigate(['/listing']);
+    //   } else {
+    //     alert('Received in foreground');
+    //     this.router.navigate(['/listing']);
+    //   }
+    // });
 
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

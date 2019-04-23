@@ -16,8 +16,18 @@ export class CreatePostPage implements OnInit {
   postCreateObj = {};
   contacts: FormArray;
   userInfo = {};
+  count: any;
+  showCount = false;
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
  
+  ionViewDidEnter(){
+    var cnt = localStorage.getItem('count');
+    if(!!cnt){
+      this.count = cnt;
+      this.showCount = true;
+    }
+  }
+
   ngOnInit() {
     this.logoPath = '../../assets/images/logo-create.png';
     this.userInfo = this.apiService.getSessionData();
@@ -63,7 +73,7 @@ export class CreatePostPage implements OnInit {
   }
 
   postSubmit() {
-    this.postCreateObj = Object.assign({'user': this.userInfo['ID']}, this.postForm.value);
+    this.postCreateObj = Object.assign({'user': this.userInfo['ID'], 'createdBy': this.userInfo['phone']}, this.postForm.value);
     
     for (var propName in this.postCreateObj) { 
       if (this.postCreateObj[propName] == "") {

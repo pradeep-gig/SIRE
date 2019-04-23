@@ -1,28 +1,28 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title  style="background:#fe914c; padding:0;">
-      <div class='header-logo'>
-          <ion-img class='logo-img' [src]="logoPath"></ion-img>
-      </div>
-      <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
-          <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
-          <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
-         SiRe
-          <ion-icon name="notifications" float-right style=" padding-right:10px"></ion-icon>
-      </h1>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar style="background:#fe914c;">
+      <ion-title  style="background:#fe914c; padding:0;">
+        <div class='header-logo'>
+            <ion-img class='logo-img' [src]="logoPath"></ion-img>
+        </div>
+        <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
+            <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
+            <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
+            SiRe 
+            <ion-badge float-right color="warning" style=" padding-right:10px" *ngIf='showCount'>{{count}}</ion-badge><ion-icon name="notifications" float-right routerLink="/notification"></ion-icon>
+        </h1>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
 	
-	<div padding text-center>
+	<div padding>
       <button class='option-btn' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button> <span class='option-title' routerLink="/create-post"> Add post </span>
   </div>
-  <div padding text-center>
+  <div padding>
       <button class='option-btn' color="warning" shape="round" routerLink='/filter'>  <ion-icon ios="ios-search" md="md-search"></ion-icon> </button> <span class='option-title' routerLink='/filter'> Search post </span>
   </div>
-  <div padding text-center>
+  <div padding>
       <button class='option-btn' routerLink="/home" color="warning" shape="round"> <ion-icon ios="ios-trash" md="md-trash"></ion-icon> </button> <span class='option-title' routerLink="/home"> Delete post </span>
 	</div>
 	

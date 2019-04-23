@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
       if(this.loginForm.value.otp == this.otp){
         let userInfo = this.apiService.getSessionData();
         // console.log(userInfo.phone);
-        this.fcmService.getToken(userInfo.phone);
+        this.fcmService.getToken(userInfo.ID);
         this.router.navigate(['/dashboard']);
       }
       else{
