@@ -4,7 +4,7 @@
         <div class='header-logo'>
             <ion-img class='logo-img' [src]="logoPath"></ion-img>
         </div>
-        <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
+        <h1 class='header-title' text-center > 
             <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
             <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
             SiRe 
@@ -16,14 +16,15 @@
 
 <ion-content>
 	
-	<div padding>
+  <div text-center>
+	<div padding style="align:left">
       <button class='option-btn' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button> <span class='option-title' routerLink="/create-post"> Add post </span>
   </div>
-  <div padding>
+  <div padding style="align:left">
       <button class='option-btn' color="warning" shape="round" routerLink='/filter'>  <ion-icon ios="ios-search" md="md-search"></ion-icon> </button> <span class='option-title' routerLink='/filter'> Search post </span>
   </div>
-  <div padding>
+  <div padding style="align:left">
       <button class='option-btn' routerLink="/home" color="warning" shape="round"> <ion-icon ios="ios-trash" md="md-trash"></ion-icon> </button> <span class='option-title' routerLink="/home"> Delete post </span>
 	</div>
-	
+	</div>
 </ion-content>
