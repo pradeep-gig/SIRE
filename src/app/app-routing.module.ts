@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'terms', canActivate: [AuthGuard],loadChildren: './terms/terms.module#TermsPageModule' },
   { path: 'message', canActivate: [AuthGuard],loadChildren: './message/message.module#MessagePageModule' },
   { path: 'dashboard', canActivate: [AuthGuard], loadChildren: './dashboard/dashboard.module#DashboardPageModule' },  { path: 'filter', loadChildren: './filter/filter.module#FilterPageModule' },
+  { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
 
 
 ];

@@ -11,6 +11,9 @@ export class FilterPage implements OnInit {
   logoPath: string;
   state = [];
   search = {'typeofpost': '', 'location': '', 'type': ''};
+  count: any;
+  showCount = false;
+
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
@@ -22,6 +25,14 @@ export class FilterPage implements OnInit {
         }
       }
     });
+  }
+
+  ionViewDidEnter(){
+    var cnt = localStorage.getItem('count');
+    if(!!cnt){
+      this.count = cnt;
+      this.showCount = true;
+    }
   }
 
   filter(){

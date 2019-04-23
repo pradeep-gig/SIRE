@@ -13,10 +13,20 @@ export class PostViewPage implements OnInit {
   displayInfo = [];
   displayLabel = {};
   title = '';
-
+  count: any;
+  showCount = false;
   showData = false;
   constructor(private activatedRoute: ActivatedRoute, private apiService: ApiService) { 
  
+  }
+
+  ionViewDidEnter(){
+
+    var cnt = localStorage.getItem('count');
+    if(!!cnt){
+      this.count = cnt;
+      this.showCount = true;
+    }
   }
 
   ngOnInit() {

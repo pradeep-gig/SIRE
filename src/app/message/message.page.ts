@@ -16,7 +16,8 @@ export class MessagePage implements OnInit {
   messageFormReq = {};
   userInfo= {};
   title = 'Send Message';
-
+  count: any;
+  showCount = false;
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) { }
 
   ngOnInit() {
@@ -33,7 +34,14 @@ export class MessagePage implements OnInit {
 
     }
 
- 
+    ionViewDidEnter(){
+
+      var cnt = localStorage.getItem('count');
+      if(!!cnt){
+        this.count = cnt;
+        this.showCount = true;
+      }
+    }
     sendmessage(){
     if(this.messageForm.valid){
       this.apiService.showLoading();

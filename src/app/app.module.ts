@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Firebase } from '@ionic-native/firebase/ngx';
 import { FcmService } from './services/fcm/fcm.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAd20TXypSh6jkQip_TT8opsfRYqKNe2wc",
@@ -40,7 +41,8 @@ const firebaseConfig = {
     FcmService,
     Firebase,
     AngularFirestore,
-    FCM
+    FCM,
+    SocialSharing
   ],
   bootstrap: [AppComponent]
 })

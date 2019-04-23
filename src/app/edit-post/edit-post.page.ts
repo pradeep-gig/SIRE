@@ -17,7 +17,18 @@ export class EditPostPage implements OnInit {
   contacts: FormArray;
   postData: any;
   showForm = false;
+  count: any;
+  showCount = false;
+  
   constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  ionViewDidEnter(){
+    var cnt = localStorage.getItem('count');
+    if(!!cnt){
+      this.count = cnt;
+      this.showCount = true;
+    }
+  }
 
   public async ngOnInit() {
     this.apiService.getStates().subscribe(res => {

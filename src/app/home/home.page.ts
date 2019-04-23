@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api/api.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,10 @@ export class HomePage {
   isLoadProfile: boolean =true;
   userData: any;
   Postings: [];
-  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router) {
+  count: any;
+  showCount = false;
+  
+  constructor(private formBuilder: FormBuilder, private apiService: ApiService, private router: Router, private socialSharing: SocialSharing) {
 
   }
 
@@ -43,6 +47,11 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
+    var cnt = localStorage.getItem('count');
+    if(!!cnt){
+      this.count = cnt;
+      this.showCount = true;
+    }
     this.view = 'myPosting';
     this.getPost();
   }
@@ -67,6 +76,22 @@ export class HomePage {
     // this.router.navigate(['/edit-post/' + data.id]);
     this.router.navigate(['/edit-post/' + data.id]);
     // this.router.navigate(['/post-view/' + data.id]);
+  }
+  
+  async share(type, item) {
+    // Text + Image or URL works
+    let urlLink = "sireapp://sireapp.com/post?id="+item.id;
+    urlLink = "https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=app_redirect&url="+btoa(urlLink);
+    
+     if(type == 'other'){
+      let msg = 'Check this out! '+ "\r\n\r\n" +'*Title* :' + item.title + "\r\n\r\n" + '*Property Type* :' + item.type + "\r\n\r\n" + '*Property Location* :' + item.location + "\r\n\r\n" + '*Budget* :' + item.budget + "\r\n\r\n" + '*Terms* :' + item.terms + "\r\n\r\n" + '*Area* :' + item.area + "\r\n\r\n"+ '*Dimension* :' + item.dimension + "\r\n\r\n"+ '*Facing* :' + item.facing + "\r\n\r\n"+ '*Contact number* :' + item.contact + "\r\n\r\n";
+      encodeURIComponent(msg);
+      this.socialSharing.share(msg, 'SI RE', null, urlLink).then(() => {
+        // 
+      }).catch((e) => {
+        
+      });
+    }
   }
 
   deletePost(data){

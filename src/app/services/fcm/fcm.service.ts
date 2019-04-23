@@ -20,7 +20,7 @@ export class FcmService {
   async getToken(userId) {
     let token;
     token = await this.firebaseNative.getToken(); 
-    return this.saveTokentoFireStore(token, userId);
+    return this.saveTokentoDb(token, userId);
   }
 
   private saveTokentoFireStore(token, userPhone){
@@ -35,6 +35,20 @@ export class FcmService {
     localStorage.setItem('token', token);
 
     return deviceRef.doc(token).set(docData);
+
+  }
+  
+  private saveTokentoDb(token, userId){
+    if(!token) return;
+
+    const docData = {
+      token,
+      user_id: userId,
+    }
+
+    this.apiService.setToken(docData).subscribe(function(res){
+      localStorage.setItem('token', token);
+    });
 
   }
 
