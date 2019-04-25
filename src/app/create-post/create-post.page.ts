@@ -26,6 +26,7 @@ export class CreatePostPage implements OnInit {
       this.count = cnt;
       this.showCount = true;
     }
+    this.buildForm();
   }
 
   ngOnInit() {
@@ -40,6 +41,10 @@ export class CreatePostPage implements OnInit {
     });
 
     //contact: ['',Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+    
+  }
+
+  buildForm(){
     this.postForm = this.formBuilder.group({
       typeofpost: ['', Validators.compose([Validators.required])],
       title: ['', Validators.compose([Validators.required])],
