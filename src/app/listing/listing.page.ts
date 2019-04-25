@@ -69,7 +69,7 @@ export class ListingPage implements OnInit {
   async share(type, item) {
       // Text + Image or URL works
       let urlLink = "sireapp://sireapp.com/post?id="+item.id;
-      urlLink = "https://sire-vinogautam.c9users.io/wp-admin/admin-ajax.php?action=app_redirect&url="+btoa(urlLink);
+      urlLink = this.apiService.restBaseUrl +"app_redirect&url="+btoa(urlLink);
       
 
       if(type == 'whatsapp'){
