@@ -86,7 +86,7 @@ export class HomePage {
      if(type == 'other'){
       let msg = 'Check this out! '+ "\r\n\r\n" +'*Title* :' + item.title + "\r\n\r\n" + '*Property Type* :' + item.type + "\r\n\r\n" + '*Property Location* :' + item.location + "\r\n\r\n" + '*Budget* :' + item.budget + "\r\n\r\n" + '*Terms* :' + item.terms + "\r\n\r\n" + '*Area* :' + item.area + "\r\n\r\n"+ '*Dimension* :' + item.dimension + "\r\n\r\n"+ '*Facing* :' + item.facing + "\r\n\r\n"+ '*Contact number* :' + item.contact + "\r\n\r\n";
       encodeURIComponent(msg);
-      this.socialSharing.share(msg, 'SI RE', null, urlLink).then(() => {
+      this.socialSharing.share(msg, 'SiRe', null, urlLink).then(() => {
         // 
       }).catch((e) => {
         
