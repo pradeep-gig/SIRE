@@ -18,7 +18,7 @@
   </ion-header>
 
 <ion-content padding>
-    <form class='login-form' [formGroup]="messageForm">
+    <form class='login-form' *ngIf='!!messageForm' [formGroup]="messageForm">
         <p class='form-header' text-center>Fill in the following details</p>
         
         <ion-row margin-top>

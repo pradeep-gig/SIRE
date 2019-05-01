@@ -25,8 +25,8 @@ export class CreatePostPage implements OnInit {
     if(!!cnt){
       this.count = cnt;
       this.showCount = true;
-    }
-    this.buildForm();
+    } 
+      this.buildForm();
   }
 
   ngOnInit() {

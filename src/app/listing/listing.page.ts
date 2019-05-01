@@ -105,7 +105,7 @@ export class ListingPage implements OnInit {
         encodeURIComponent(msg);
        console.log(msg);
        console.log(urlLink);
-        // this.socialSharing.share(msg, 'SiRe', null, urlLink).then(() => {
+        // this.socialSharing.share(msg, 'SI RE', null, urlLink).then(() => {
         //   // 
         // }).catch((e) => {
           
