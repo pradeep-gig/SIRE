@@ -24,14 +24,6 @@ export class MessagePage implements OnInit {
     this.userInfo = this.apiService.getSessionData();
     console.log(this.userInfo);
     this.logoPath = '../../assets/images/logo-create.png';
-
-      this.messageForm = this.formBuilder.group({
-      phone: [this.userInfo['phone'], Validators.compose([Validators.required])],
-      name: ['', Validators.compose([Validators.required])],
-      subject: ['', Validators.compose([Validators.required])],
-      message: ['',Validators.compose([Validators.required])],
-     });
-
     }
 
     ionViewDidEnter(){
@@ -41,7 +33,18 @@ export class MessagePage implements OnInit {
         this.count = cnt;
         this.showCount = true;
       }
+      this.buildForm();
     }
+
+    buildForm(){
+      this.messageForm = this.formBuilder.group({
+        phone: [this.userInfo['phone'], Validators.compose([Validators.required])],
+        name: ['', Validators.compose([Validators.required])],
+        subject: ['', Validators.compose([Validators.required])],
+        message: ['',Validators.compose([Validators.required])],
+       });
+    }
+
     sendmessage(){
     if(this.messageForm.valid){
       this.apiService.showLoading();
@@ -50,6 +53,7 @@ export class MessagePage implements OnInit {
         this.apiService.hideLoading();
         if(!!res['status'] && res['status'] == "Success"){
           this.apiService.showToast("Your message has been sent successfully. ", true, "close", "bottom", 1000);
+          this.router.navigate(['/dashboard']);
          }else{
           this.apiService.showToast((!!res['msg'] ) ? res['msg'] : "Message sending failed", true, "close", "bottom", 1000);
         }
