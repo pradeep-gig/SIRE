@@ -21,7 +21,7 @@
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
       </div>
-      <h1 class='header-title' text-center style="padding:20px 0;  color:#fff; "> 
+      <h1 class='header-title' text-center> 
           <ion-menu-button autoHide="false" style=" position: absolute; left: 10px;"></ion-menu-button>
           <!-- <ion-icon name="menu" (click)='openMenu()' float-left ></ion-icon>  -->
          Create Post
@@ -54,7 +54,8 @@
       </ion-item>
 
       <ion-item>
-        <ion-label position="floating"> Location </ion-label>
+        <ion-label position="floating"> Location <span class="mandatory">*</span> </ion-label>
+
         <ion-select interface="action-sheet" formControlName="location">
           <ion-select-option *ngFor='let s of state; let i = index' value="{{s}}">{{s}}</ion-select-option>
         </ion-select>
