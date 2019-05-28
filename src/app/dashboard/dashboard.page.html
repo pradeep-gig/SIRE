@@ -1,6 +1,5 @@
 <ion-header>
-    <ion-toolbar style="background:#fe914c;">
-      <ion-title  style="background:#fe914c; padding:0;">
+  <ion-title  style="background:#fe914c; padding:0;">
         <div class='header-logo'>
             <ion-img class='logo-img' [src]="logoPath"></ion-img>
         </div>
@@ -14,20 +13,19 @@
         <ion-badge  color="warning" style=" padding-right:10px" *ngIf='showCount'> <span class='noti-count' *ngIf='count != 0'>{{count}}</span> </ion-badge>
       </div>
         </h1>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  </ion-title>
+</ion-header>
 
 <ion-content>
 	
-  <div text-center>
-	<div padding>
+  <div class="dashboard_list">
+	<div text-left>
       <button class='option-btn' routerLink="/create-post" color="warning" shape="round"> <ion-icon name="add"></ion-icon> </button> <span class='option-title' routerLink="/create-post"> Add post </span>
   </div>
-  <div padding>
+  <div text-left>
       <button class='option-btn' color="warning" shape="round" routerLink='/filter'>  <ion-icon ios="ios-search" md="md-search"></ion-icon> </button> <span class='option-title' routerLink='/filter'> Search post </span>
   </div>
-  <div padding>
+  <div text-left>
       <button class='option-btn' routerLink="/home" color="warning" shape="round"> <ion-icon ios="ios-trash" md="md-trash"></ion-icon> </button> <span class='option-title' routerLink="/home"> Delete post </span>
 	</div>
 	</div>

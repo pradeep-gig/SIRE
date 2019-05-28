@@ -1,6 +1,5 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title  style="background:#fe914c; padding:0;">
+  <ion-title  style="background:#fe914c; padding:0;">
       <div class='header-logo'>
           <ion-img class='logo-img' [src]="logoPath"></ion-img>
       </div>
@@ -14,8 +13,7 @@
       </div>
       </h1>
     </ion-title>
-  </ion-toolbar>
-</ion-header>
+ </ion-header>
 
 <ion-content padding>
     <ion-segment [(ngModel)]="view" (ionChange)="segmentChanged($event.target.value)">
